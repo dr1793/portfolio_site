@@ -5,38 +5,44 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>welcome to david r's site!</title>
 		<link rel="stylesheet" href="node_modules/bulma/css/bulma.css">
+		<link href="styles.css" rel="stylesheet">
 	</head>
-
-
 
 
 
 	<body class="">
 		
+		<!--navbar-->
 		<nav class="navbar has-shadow is-white" role="navigation" aria-label="main navigation">
 			<div class="container">
 				<div class="navbar-brand">
 					<a class="navbar-item" href="#">
-						<img src="images/krab.png" alt="Logo" style="min-height:40px">
+						<img src="images/krab.png" alt="Logo" style="min-height:40px" id="krab">
 					</a>
-					<span class="navbar-burger" id="burger" data-target="navbarMenu">
-						<span></span>
-						<span></span>
-						<span></span>
-					</span>
+					<a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" id="burger" 
+						    data-target="navbarMenu">
+						<span aria-hidden="true"></span>
+						<span aria-hidden="true"></span>
+						<span aria-hidden="true"></span>
+					</a>
 				</div>
 				<div id="nav-links" role="navigation" class="navbar-menu">
 					<div class="navbar-end">
-						<a class="navbar-item">
+						<a class="navbar-item" style="text-align:center;">
+							Home
+						</a>
+						<a class="navbar-item" style="text-align:center;">
 							Resume
 						</a>
-						<a class="navbar-item">
+						<a class="navbar-item" style="text-align:center;">
 							About
 						</a>
 					</div>
 				</div>
 			</div>
 		</nav>
+
+
 		
 		<form action="https://search.radeleau.dev">
 			<input type="submit" value="a comfy searx instance..." />
