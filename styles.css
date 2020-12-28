@@ -54,3 +54,20 @@ hr {
   1% {display: block;opacity: 0;}
   100% {opacity: 1;max-height: 396px;}
 }
+
+#cave {
+position: absolute; 
+top: -56px;
+left: -176px;
+z-index: 100; 
+box-shadow: 10px -3px 8px -2px #888888;
+}
+
+#krab {
+min-height: 40px;/*
+position: absolute; 
+top: -0px;
+left: -0px;
+z-index: 99; 
+*/
+}
