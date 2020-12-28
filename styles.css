@@ -58,8 +58,8 @@ hr {
 #cave {
 position: absolute; 
 top: -56px;
-left: -176px;
-z-index: 100; 
+left: -17px;
+z-index: 1000; 
 box-shadow: 10px -3px 8px -2px #888888;
 }
 
