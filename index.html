@@ -12,8 +12,8 @@
 
 
 
-	<body class="has-navbar-fixed-top" id="body">
-		<div id="projectCards">{{ phew }}</div>
+	<body class="has-navbar-fixed-top is-fullheight" id="body">
+		<div class="section" id="main-section">
 		<!--navbar-->
 		<nav class="navbar has-shadow is-transparent is-fixed-top" role="navigation" aria-label="main navigation" id="site-navbar">
 			<div class="container">
@@ -55,9 +55,9 @@
 
 
 					<div class="column is-4-tabet is-3-desktop">
-						<div class="card">
-							<header class="card-header">
-								<p class="card-header-title">
+						<div class="card" id="card-d">
+							<header class="card-header" id="card-header">
+								<p class="card-header-title">  
 									Tableau Regression Tester
 								</p>
 							</header>
@@ -66,13 +66,11 @@
 							</a>
 							<hr/>
 							<div class="card-content">
-								A lightweight webapp that leverages the Tableau JavaScript API to perform basic regression testing of Tableau reports published to Tableau server. 
+								A lightweight webapp that uses the Tableau JS API to perform basic regression comparison between versions of reports on Tableau server. 
 							</div>
 							<footer class="card-footer">
 								<p class="card-footer-item">
-									<span>
-									Coming Soon!
-									</span>
+									<a href="" class="card-footer-item has-text-grey">Coming Soon!</a>
 								</p>
 							</footer>
 						</div>
@@ -82,8 +80,8 @@
 
 					<div class="column is-4-tabet is-3-desktop">
 						<div class="card">
-							<header class="card-header">
-								<p class="card-header-title">
+							<header class="card-header" id="card-header">
+								<p class="card-header-title">  
 									The "Parties" Database 
 								</p>
 							</header>
@@ -96,10 +94,8 @@
 							</div>
 							<footer class="card-footer">
 								<p class="card-footer-item">
-									<span>
-										<a href="" 
+									<a href="" 
 								   		class="card-footer-item has-text-grey">Coming Soon!</a>
-									</span>
 								</p>
 							</footer>
 						</div>
@@ -108,8 +104,8 @@
 
 					<div class="column is-4-tabet is-3-desktop">
 						<div class="card">
-							<header class="card-header">
-								<p class="card-header-title">
+							<header class="card-header" id="card-header">
+								<p class="card-header-title">  
 									Self-Hosted Searx Instance
 								</p>
 							</header>
@@ -144,13 +140,14 @@
 				<h3 class="title has-text-centered is-size-4">About Me</h3>
 			</div>
 		</section>
+		</div>
 
 		<!--footer-section-->
-		<footer class="footer" id="site-footer">
+		<footer class="footer" id="site-footer" style="height: 75px;">
 			<div class="container">
 				<div class="columns">
-					<div class="column has-text-centered has-text-right-tablet">
-						<div class="buttons is-centered">
+					<div class="column has-text-right has-text-right-tablet">
+						<div class="buttons is-right">
 							<a class="button is-small is-text" href="#" id="icon-button">
 								<img src="images/icons/github.svg" height=24px width=24px alt="" id="icon-button">
 							</a>
@@ -158,7 +155,7 @@
 								<img src="images/icons/linkedin.svg" height=24px width=24px alt="">
 							</a>
 					</div>
-					<div class="column has-text-centered">
+					<div class="column has-text-right">
 						<p class="subtitle is-6">© 2020 David Rameau</p>
 					</div>
 				</div>
@@ -166,6 +163,8 @@
 		</footer>
 
 		<script src="index.js"></script>
+		<!--<script type= "module" src="/js_features/drag.js"></script>-->
 		<script type="module" src="myvue.js"></script>
 	</body>
 </html>
+

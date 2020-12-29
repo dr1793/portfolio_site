@@ -1,5 +1,5 @@
 const body = document.querySelector("#body");
-
+const krab = document.querySelector("#krab");
 const burgerIcon = document.querySelector("#burger");
 const navbarMenu = document.querySelector("#nav-links");
 const caveBottom = document.querySelector("#cave2");
@@ -28,6 +28,11 @@ about.addEventListener("click", () => {
   resume.classList.add("has-text-link");
   about_section.classList.remove("hidden");
   about.classList.remove("has-text-link");
+  if (about_section.classList.contains("hidden")) {
+    navbarMenu.classList.toggle("is-active");
+    burgerIcon.classList.toggle("is-active");
+    toggleCave();
+  }
 });
 
 resume.addEventListener("click", () => {
@@ -37,9 +42,19 @@ resume.addEventListener("click", () => {
   resume.classList.remove("has-text-link");
   about_section.classList.add("hidden");
   about.classList.add("has-text-link");
+  if (resume_section.classList.contains("hidden")) {
+    navbarMenu.classList.toggle("is-active");
+    burgerIcon.classList.toggle("is-active");
+    toggleCave();
+  }
 });
 
 home.addEventListener("click", () => {
+  if (home_section.classList.contains("hidden")) {
+    navbarMenu.classList.toggle("is-active");
+    burgerIcon.classList.toggle("is-active");
+    toggleCave();
+  }
   home_section.classList.remove("hidden");
   home.classList.remove("has-text-link");
   resume_section.classList.add("hidden");
@@ -73,7 +88,15 @@ about_section.addEventListener("click", () => {
 });
 
 site_footer.addEventListener("click", () => {
-  navbarMenu.classList.toggle("is-active");
-  burgerIcon.classList.toggle("is-active");
+  navbarMenu.classList.remove("is-active");
+  burgerIcon.classList.remove("is-active");
   toggleCave();
+});
+
+krab.addEventListener("mouseover", () => {
+  krab.src = "images/krab-512.png";
+});
+
+krab.addEventListener("mouseout", () => {
+  krab.src = "images/krab.png";
 });
