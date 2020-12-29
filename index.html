@@ -13,9 +13,9 @@
 
 
 	<body class="has-navbar-fixed-top" id="body">
-		<div id="app">{{ phew }}</div>
+		<div id="projectCards">{{ phew }}</div>
 		<!--navbar-->
-		<nav class="navbar has-shadow is-transparent is-fixed-top" role="navigation" aria-label="main navigation">
+		<nav class="navbar has-shadow is-transparent is-fixed-top" role="navigation" aria-label="main navigation" id="site-navbar">
 			<div class="container">
 				<div class="navbar-brand">
 					<a class="navbar-item" href="#">
@@ -35,10 +35,10 @@
 						<a class="navbar-item" style="text-align:center;" id="home">
 							Home
 						</a>
-						<a class="navbar-item" style="text-align:center;" id="resume" >
+						<a class="navbar-item has-text-link" style="text-align:center;" id="resume" >
 							Resume
 						</a>
-						<a class="navbar-item" style="text-align:center;" id= "about">
+						<a class="navbar-item has-text-link" style="text-align:center;" id= "about">
 							About
 						</a>
 					</div>
@@ -138,14 +138,15 @@
 			</div>
 		</section>
 
-
 		<!--about-section-->
 		<section class="section hidden" id="about-section">
-			<h3 class="title has-text-centered is-size-4">About Me</h3>
+			<div class="container">
+				<h3 class="title has-text-centered is-size-4">About Me</h3>
+			</div>
 		</section>
 
 		<!--footer-section-->
-		<footer class="footer">
+		<footer class="footer" id="site-footer">
 			<div class="container">
 				<div class="columns">
 					<div class="column">

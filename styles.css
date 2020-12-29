@@ -94,3 +94,7 @@ left: -0px;
 z-index: 99; 
 */
 }
+
+#burger {
+min-height: 60px;
+}
