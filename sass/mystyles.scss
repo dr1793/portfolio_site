@@ -1,2 +1,7 @@
 @charset "utf-8";
+
+$widescreen-enabled: False;
+$fullhd-enabled: False;
+$desktop: 10000px;
+
 @import "../node_modules/bulma/bulma.sass";
