@@ -21,7 +21,9 @@
 					<a class="navbar-item" href="#">
 						<img src="images/white.png" id ="cave">
 						<img src="images/white2.png" id ="cave2">
+						<img src="images/white2.png" id ="cave3">
 						<img src="images/krab.png" alt="Logo" id="krab" href=".">
+						<img src="images/border.png" id="border-left">
 					</a>
 					<a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" id="burger" 
 						    data-target="navbarMenu">
@@ -50,80 +52,31 @@
 		<!--Home Section-->
 		<section class="section" id="home-section">
 			<div class="container">
-				<h3 class="title has-text-centered is-size-4">My Stuff</h3>
-				<div class="columns mt-5 is 8 is-variable">
-
-
-					<div class="column is-4-tabet is-3-desktop">
+				<h3 class="title has-text-centered is-size-4">Posts</h3>
+				<div id="projectCards">
+				<div class="row columns is-multiline">
+					<div class="column is-4-tablet is-3-desktop" v-for="card in cardData" key="cardText">
 						<div class="card" id="card-d">
 							<header class="card-header" id="card-header">
 								<p class="card-header-title">  
-									Tableau Regression Tester
+									{{card.cardTitle}}
 								</p>
 							</header>
-							<a class="card-image has-text-centered px-6" href="https://help.tableau.com/current/api/js_api/en-us/JavaScriptAPI/js_api.htm">
-								<img src="images/tableau_js.png" class="logo" alt="searxlogo">
+							<a class="card-image has-text-centered px-6" :href=`${card.imageLink}`>
+								<img :src="card.cardImage" class="logo" alt="searxlogo">
 							</a>
 							<hr/>
 							<div class="card-content">
-								A lightweight webapp that uses the Tableau JS API to perform basic regression comparison between versions of reports on Tableau server. 
+								{{card.cardText}}
 							</div>
 							<footer class="card-footer">
 								<p class="card-footer-item">
-									<a href="" class="card-footer-item has-text-grey">Coming Soon!</a>
+								<a :href=`${card.readylink}` :class="card.readybutton">{{card.readytext}}</a>
 								</p>
 							</footer>
 						</div>
 					</div>
-
-
-
-					<div class="column is-4-tabet is-3-desktop">
-						<div class="card">
-							<header class="card-header" id="card-header">
-								<p class="card-header-title">  
-									The "Parties" Database 
-								</p>
-							</header>
-							<div class="card-image has-text-centered px-6">
-								<img src="images/party_db.png" class="logo" alt="searxlogo">
-							</div>
-							<hr/>
-							<div class="card-content">
-								Demo ETL and warehousing for a database of "parties"! Based on the database of a popular events management software.
-							</div>
-							<footer class="card-footer">
-								<p class="card-footer-item">
-									<a href="" 
-								   		class="card-footer-item has-text-grey">Coming Soon!</a>
-								</p>
-							</footer>
-						</div>
-					</div>
-
-
-					<div class="column is-4-tabet is-3-desktop">
-						<div class="card">
-							<header class="card-header" id="card-header">
-								<p class="card-header-title">  
-									Self-Hosted Searx Instance
-								</p>
-							</header>
-							<a class="card-image has-text-centered px-6" href="https://github.com/searx/searx/wiki">
-								<img src="images/Logo_searx_b.png" class="logo" alt="searxlogo">
-							</a>
-							<hr/>
-							<div class="card-content">
-								Searx is an open source internet search engine aggregator. I maintain a personal instance of searx on a DigitalOcean VPC.
-							</div>
-							<footer class="card-footer">
-								<a href="https://search.radeleau.dev" 
-								   class="card-footer-item">Try it out!</a>
-							</footer>
-						</div>
-					</div>
-
-
+				</div>
 			</div>
 		</section>
 
@@ -147,16 +100,16 @@
 			<div class="container">
 				<div class="columns">
 					<div class="column has-text-right has-text-right-tablet">
-						<div class="buttons is-right">
+						<div class="buttons is-right" id="button-list">
 							<a class="button is-small is-text" href="#" id="icon-button">
 								<img src="images/icons/github.svg" height=24px width=24px alt="" id="icon-button">
 							</a>
 							<a class="button is-small is-text" href="https://www.linkedin.com/in/david-rameau-518118101/" id="icon-button">
-								<img src="images/icons/linkedin.svg" height=24px width=24px alt="">
+								<img src="images/icons/linkedin.svg" height=24px width=24px alt="" id="icon-button">
 							</a>
 					</div>
-					<div class="column has-text-right">
-						<p class="subtitle is-6">© 2020 David Rameau</p>
+					<div class="column has-text-right" id:"copyright">
+						<p class="subtitle is-6 has-text-grey">© 2020 David E. Rameau</p>
 					</div>
 				</div>
 			</div>
