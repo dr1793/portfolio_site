@@ -38,11 +38,11 @@
 						<a class="navbar-item" style="text-align:center;" id="home">
 							Home
 						</a>
-						<a class="navbar-item has-text-link" style="text-align:center;" id="resume" >
-							Resume
-						</a>
 						<a class="navbar-item has-text-link" style="text-align:center;" id= "about">
 							About
+						</a>
+						<a class="navbar-item has-text-link" style="text-align:center;" id="resume" >
+							Resume
 						</a>
 					</div>
 				</div>
@@ -63,8 +63,12 @@
 									{{card.cardTitle}}
 								</p>
 							</header>
-							<a class="card-image has-text-centered px-6" :href=`${card.imageLink}`>
+							<a class="card-image has-text-centered px-3" :href=`${card.imageLink}`>
 								<img :src="card.cardImage" class="logo" alt="searxlogo">
+								<div class="tags has-addons is-justify-content-flex-end pb-2">
+									<span :class="card.tagType">{{card.tagText}}</span>
+									<span v-if="!(card.readytext === 'Coming Soon!')"class="tag">{{card.postDate}}</span>
+								</div>
 							</a>
 							<hr/>
 							<div class="card-content">
@@ -81,6 +85,16 @@
 			</div>
 		</section>
 
+
+		<!--about-section-->
+		<section class="section hidden" id="about-section" style="padding-top: 12px;">
+			<div class="container">
+				<h3 class="title has-text-centered is-size-4" style="margin-bottom:48px">About</h3>
+			</div>
+		</section>
+		</div>
+
+
 		<!--resume-section-->
 		<section class="section hidden" id="resume-section">
 			<div class="columns is-centered">
@@ -88,13 +102,6 @@
 			</div>
 		</section>
 
-		<!--about-section-->
-		<section class="section hidden" id="about-section" style="padding-top: 12px;">
-			<div class="container">
-				<h3 class="title has-text-centered is-size-4" style="margin-bottom:48px">About Me</h3>
-			</div>
-		</section>
-		</div>
 
 		<!--footer-section-->
 		<footer class="footer" id="site-footer" style="height: 75px;">
@@ -104,6 +111,9 @@
 						<div class="buttons is-right" id="button-list">
 							<a class="button is-small is-text" href="https://github.com/dr1793" id="icon-button">
 								<img src="images/icons/github.svg" height=24px width=24px alt="" id="icon-button">
+							</a>
+							<a class="button is-small is-text" href="mailto:delrameau@gmail.com" id="icon-button">
+								<img src="images/icons/gmail.svg" height=24px width=24px alt="" id="icon-button">
 							</a>
 							<a class="button is-small is-text" href="https://www.linkedin.com/in/david-rameau-518118101/" id="icon-button">
 								<img src="images/icons/linkedin.svg" height=24px width=24px alt="" id="icon-button">
