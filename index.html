@@ -55,7 +55,7 @@
 				<h3 class="title has-text-centered is-size-4">Posts</h3>
 				<div id="projectCards">
 				<div class="row columns is-multiline">
-					<div class="column is-4-tablet is-3-desktop" v-for="card in cardData" key="cardText">
+					<div class="column is-4-tablet is-3-desktop" v-for="(card, index) in cardData" :key="index">
 						<div class="card" id="card-d">
 							<header class="card-header" id="card-header">
 								<p class="card-header-title">  
@@ -101,7 +101,7 @@
 				<div class="columns">
 					<div class="column has-text-right has-text-right-tablet">
 						<div class="buttons is-right" id="button-list">
-							<a class="button is-small is-text" href="#" id="icon-button">
+							<a class="button is-small is-text" href="https://github.com/dr1793" id="icon-button">
 								<img src="images/icons/github.svg" height=24px width=24px alt="" id="icon-button">
 							</a>
 							<a class="button is-small is-text" href="https://www.linkedin.com/in/david-rameau-518118101/" id="icon-button">
