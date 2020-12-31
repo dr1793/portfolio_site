@@ -54,15 +54,13 @@ function go_about() {
 }
 
 function rememberPage(page) {
-  if (window.location.pathname.endsWith("index.html")) {
-    if (page == "home") {
-      go_home();
-    } else if (page == "resume") {
-      go_resume();
-    } else if (page == "about") {
-      go_about();
-    } else {
-    }
+  if (page == "home") {
+    go_home();
+  } else if (page == "resume") {
+    go_resume();
+  } else if (page == "about") {
+    go_about();
+  } else {
   }
 }
 
