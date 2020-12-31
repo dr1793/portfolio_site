@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html style="height: 100%;">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,12 +9,7 @@
 		<link rel="icon" href="images/sad copy 2.png">
 		<script src="node_modules/vue/dist/vue.js"></script>
 	</head>
-
-
-
-	<body class="has-navbar-fixed-top is-fullheight" id="body">
-		<div class="section" id="main-section">
-		
+	<body class="has-navbar-fixed-top" id="body" style="height: 100%;">
 		<!--navbar-->
 		<nav class="navbar has-shadow is-transparent is-fixed-top" role="navigation" aria-label="main navigation" id="site-navbar">
 			<div class="container">
@@ -28,9 +23,6 @@
 					</a>
 					<a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" id="burger" 
 						    data-target="navbarMenu">
-						<span aria-hidden="true"></span>
-						<span aria-hidden="true"></span>
-						<span aria-hidden="true"></span>
 					</a>
 				</div>
 				<div id="nav-links" role="navigation" class="navbar-menu">
@@ -48,62 +40,19 @@
 				</div>
 			</div>
 		</nav>
+
+
+		<!--404message-section-->
+		<section class="section pt-10" id="about-section">
+			<div class="container">
+				<h3 class="title has-text-centered is-size-4" style="margin-bottom:48px">This page does not exist.</h3>
+			</div>
+			<div class="is-flex is-flex-direction-column is-align-items-center">
+				<a href="https://radeleau.dev" class="button is-dark"> Return to Home Page</a>
+			</div> 
+		</section>
+
 		
-
-		<!--Home Section-->
-		<section class="section" id="home-section" style="padding-top: 12px;">
-			<div class="container">
-				<h3 class="title has-text-centered is-size-4" style="margin-bottom: 48px;">Posts</h3>
-				<div id="projectCards">
-				<div class="row columns is-multiline">
-					<div class="column is-4-tablet is-3-desktop" v-for="(card, index) in cardData" :key="index">
-						<div class="card" id="card-d">
-							<header class="card-header" id="card-header">
-								<p class="card-header-title">  
-									{{card.cardTitle}}
-								</p>
-							</header>
-							<a class="card-image has-text-centered px-3" :href=`${card.imageLink}`>
-								<img :src="card.cardImage" class="logo" alt="searxlogo">
-								<div class="tags has-addons is-justify-content-flex-end pb-2">
-									<span :class="card.tagType">{{card.tagText}}</span>
-									<span v-if="!(card.readytext === 'Coming Soon!')"class="tag">{{card.postDate}}</span>
-								</div>
-							</a>
-							<hr/>
-							<div class="card-content">
-								{{card.cardText}}
-							</div>
-							<footer class="card-footer">
-								<p class="card-footer-item">
-								<a :href=`${card.readylink}` :class="card.readybutton">{{card.readytext}}</a>
-								</p>
-							</footer>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-
-
-		<!--about-section-->
-		<section class="section hidden" id="about-section" style="padding-top: 12px;">
-			<div class="container">
-				<h3 class="title has-text-centered is-size-4" style="margin-bottom:48px">About</h3>
-			</div>
-		</section>
-
-
-		<!--resume-section-->
-		<section class="section hidden" id="resume-section">
-			<div class="columns is-centered">
-				<h3></h3>
-				<embed src="resume/Rameau Resume.pdf" type="application/pdf" width="80%" style="height: calc(80vw * 1.25); max-height:1160px; max-width: 920px;"/>
-			</div>
-		</section>
-		</div>
-
-
 		<!--footer-section-->
 		<footer class="footer" id="site-footer" style="height: 75px;">
 			<div class="container">
@@ -127,10 +76,6 @@
 				</div>
 			</div>
 		</footer>
-
-		<script src="index.js"></script>
-		<!--<script type= "module" src="/js_features/drag.js"></script>-->
-		<script type="module" src="myvue.js"></script>
+		<script src="404.js"></script>
 	</body>
 </html>
-
