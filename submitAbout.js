@@ -1,4 +1,4 @@
-function submitMessageAbout() {
+async function submitMessageAbout() {
   //setting the submit button to load
   const button = document.getElementById("submitButton");
   button.classList.add("is-loading");
@@ -21,18 +21,28 @@ function submitMessageAbout() {
   document.getElementById("submissionErrorMessage").innerHTML = "";
 
   //Running the validation methods
-  validation(submission, button);
+  await validation(submission, button);
 
   //Send the data to the API
-  sendToAPI();
-
+  await sendToAPI();
+  //Button success
   button.classList.remove("is-loading");
   button.classList.add("is-success");
   button.innerHTML = "Message Received";
   button.setAttribute("disabled", "");
+
+  //Sending the success message
+  document
+    .getElementById("submissionErrorMessage")
+    .classList.remove("has-text-danger");
+  document
+    .getElementById("submissionErrorMessage")
+    .classList.add("has-text-success");
+  document.getElementById("submissionErrorMessage").innerHTML =
+    "Thanks for reaching out. I'll get back to you as soon as possible.";
 }
 
-function validation(submission, button) {
+async function validation(submission, button) {
   //first check that the user entered anything
   for (arg in submission) {
     if (!submission[arg]) {
@@ -82,7 +92,9 @@ function validation(submission, button) {
   }
 }
 
-function sendToAPI() {}
+async function sendToAPI() {
+  return true;
+}
 
 function pushErrorMessagetoUser(message) {
   document.getElementById("submissionErrorMessage").innerHTML = message;
