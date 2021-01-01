@@ -117,11 +117,6 @@ border-top-width: 0px;
 border-bottom-width: 0px;
 }
 
-#icon-button {
-  width:24;
-  height:24;
-}
-
 body {
   display: flex;
   flex-direction: column;
