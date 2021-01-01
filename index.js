@@ -130,8 +130,8 @@ krab.addEventListener("mouseout", () => {
 });
 
 krab.addEventListener("click", () => {
-  go_home();
-  if (!home_section.classList.contains("hidden")) {
+  sessionStorage.getItem("current-page") == "home" ? go_about() : go_home();
+  if (navbarMenu.classList.contains("is-active")) {
     navbarMenu.classList.remove("is-active");
     burgerIcon.classList.remove("is-active");
     toggleCave();

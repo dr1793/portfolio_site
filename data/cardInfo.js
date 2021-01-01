@@ -1,19 +1,5 @@
 export const cardInfo = [
   {
-    cardTitle: "Digital Ocean is Awesome!",
-    cardImage: "../images/DigitalOcean_logo.png",
-    imageLink: "https://www.digitalocean.com/",
-    cardText:
-      "A short discussion of what I currently host on the Digital Ocean Cloud and how the service could be useful to you.",
-    readybutton: "card-footer-item has-text-grey",
-    readylink: "javascript:;",
-    readytext: "Coming Soon!",
-    tagType: "tag is-info",
-    tagText: "Blog",
-    postDate: "12-30-2020",
-  },
-
-  {
     cardTitle: "Tableau Regression Tester",
     cardImage: "../images/tableau_js.png",
     imageLink:
@@ -33,7 +19,7 @@ export const cardInfo = [
     cardImage: "../images/party_db.png",
     imageLink: "javascript:;",
     cardText:
-      'Demo ETL/warehousing of a database of "parties"! Based on the database of a popular events management software.',
+      'Demo ETL/warehousing of a database of "parties"! Based on the database of a popular event management software.',
     readybutton: "card-footer-item has-text-grey",
     readylink: "javascript:;",
     readytext: "Coming Soon!",
@@ -42,6 +28,19 @@ export const cardInfo = [
     postDate: "~2021",
   },
 
+  {
+    cardTitle: "Digital Ocean is Awesome!",
+    cardImage: "../images/DigitalOcean_logo.png",
+    imageLink: "https://www.digitalocean.com/",
+    cardText:
+      "A short discussion of what I currently host on the Digital Ocean Cloud and how the service could be useful to you.",
+    readybutton: "card-footer-item has-text-grey",
+    readylink: "javascript:;",
+    readytext: "Coming Soon!",
+    tagType: "tag is-info",
+    tagText: "Blog",
+    postDate: "12-30-2020",
+  },
   {
     cardTitle: "Self-Hosting Searx",
     cardImage: "../images/Logo_searx_b copy.png",

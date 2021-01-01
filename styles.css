@@ -140,7 +140,16 @@ body {
   padding-right: 20px;
   padding-bottom: 100px;
 }
-.clear { clear: both; height: 5px; }
+
+#krabEyes {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  left:0;
+  padding-top: 16px;
+  padding-bottom: 117px;
+}
+.clear { clear: both; height: 20px; }
 
 section {
 }
