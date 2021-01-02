@@ -21,10 +21,10 @@ async function submitMessageAbout() {
   document.getElementById("submissionErrorMessage").innerHTML = "";
 
   //Running the validation methods
-  await validation(submission, button);
+  validation(submission, button);
 
   //Send the data to the API
-  await sendToAPI();
+  await sendToAPI(submission, button);
   //Button success
   button.classList.remove("is-loading");
   button.classList.add("is-success");
@@ -37,12 +37,12 @@ async function submitMessageAbout() {
     .classList.remove("has-text-danger");
   document
     .getElementById("submissionErrorMessage")
-    .classList.add("has-text-success");
+    .classList.add("has-text-black");
   document.getElementById("submissionErrorMessage").innerHTML =
     "Thanks for reaching out. I'll get back to you as soon as possible.";
 }
 
-async function validation(submission, button) {
+function validation(submission, button) {
   //first check that the user entered anything
   for (arg in submission) {
     if (!submission[arg]) {
@@ -92,8 +92,30 @@ async function validation(submission, button) {
   }
 }
 
-async function sendToAPI() {
-  return true;
+async function sendToAPI(messageData, button) {
+  console.log(messageData);
+
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  var response = "";
+  try {
+    response = await fetch("http://localhost:5000", {
+      method: "POST",
+      headers: myHeaders,
+      body: JSON.stringify(messageData),
+      redirect: "follow",
+    });
+  } catch (error) {
+    console.log(error);
+    button.classList.remove("is-loading");
+    pushErrorMessagetoUser(
+      "We're having trouble communicating with the server. Please try again."
+    );
+    throw new Error("Unable to reach server.");
+  }
+
+  console.log(response);
 }
 
 function pushErrorMessagetoUser(message) {
