@@ -66,7 +66,7 @@
 									{{card.cardTitle}}
 								</p>
 							</header>
-							<a class="card-image has-text-centered px-3" :href=`${card.imageLink}`>
+							<a class="card-image has-text-centered px-3" :href=`${card.imageLink}` id="cardImage">
 								<img :src="card.cardImage" class="logo" alt="searxlogo">
 								<div class="tags has-addons is-justify-content-flex-end pb-2">
 									
@@ -75,8 +75,8 @@
 								</div>
 							</a>
 							<hr/>
-							<div class="card-content">
-								{{card.cardText}}
+							<div class="card-content has-text-centered ">
+								<p>{{card.cardText}}</p>
 							</div>
 							<footer class="card-footer">
 								<p class="card-footer-item">
@@ -107,14 +107,13 @@
 				<br><p class="title is-4 is-spaced">Send me a message:</p> 
 				<div class=""style="margin: 5%;">
 					<div class="is-flex is-flex-direction-row is-justify-content-space-between is-align-items-center">
-						<input class="input mr-3" type="text" id="Name" placeholder="Name" value="Jotaro Joestar">
-						<input class="input ml-3" type="email" id="Email" placeholder="Email" value="jjostar@jojo.com">
+						<input class="input mr-3" type="text" id="Name" placeholder="Name" value="">
+						<input class="input ml-3" type="email" id="Email" placeholder="Email" value="">
 					</div>
 					<div class="clear"></div>
-					<input class="input" type="text" id="Subject" placeholder="Subject" value="Jojo's Bizarre Adventure">
+					<input class="input" type="text" id="Subject" placeholder="Subject" value="">
 					<div class="clear"></div>
-					<textarea class="textarea" type="text" id="Message" placeholder="Message">The universe of JoJo's Bizarre Adventure is a reflection of the real world with the added existence of supernatural forces and beings.[2] In this setting, some people are capable of transforming their inner spiritual power into a Stand (Sutando); another significant form of energy is Hamon ('Ripple'), a martial arts technique that allows its user to focus bodily energy into sunlight via controlled breathing. The narrative of JoJo's Bizarre Adventure is split into parts with independent stories and different characters. Each of the series' protagonists is a member of the Joestar family, whose mainline descendants possess a star-shaped birthmark above their left shoulder blade and a name that can be abbreviated to the titular 'JoJo'.[a] The first six parts take place within a single continuity whose generational conflict stems from the rivalry between Jonathan Joestar and Dio Brando, while the latter two parts take place in an alternate universe where the Joestar family tree is heavily altered.
-</textarea>
+					<textarea class="textarea" type="text" id="Message" placeholder="Message"></textarea>
 					<div class="is-flex is-flex-direction-column is-align-items-center" style="background-color: transparent;">
 						<div class="clear"></div>
 						<h6 class="is-title-6 has-text-danger" id="submissionErrorMessage"></h6>

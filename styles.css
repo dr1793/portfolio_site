@@ -7,16 +7,19 @@
 .card {
   display: flex;
   flex-direction: column;
+  height: 100%;
+  max-height: 850px;
 }
 .card-header {
-  height: 80%;
 }
 
 .card-footer {
-  height: 55px;
 }
 .card-content {
   padding: 18px;
+  height: 80%;
+  display: flex;
+  align-items: center;
   /*overflow:hidden;
   text-overflow: ellipsis; */
 }

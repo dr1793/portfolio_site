@@ -27,7 +27,19 @@ export const cardInfo = [
     tagText: "Project",
     postDate: "~2021",
   },
-
+  {
+    cardTitle: "What even is Blockstack?",
+    cardImage: "../images/blockstack-stx-logo.png",
+    imageLink: "https://www.blockstack.org/",
+    cardText:
+      "Development platform? Crypto-currency? In this post, I give my layperson's understanding of this emerging technology.",
+    readybutton: "card-footer-item has-text-grey",
+    readylink: "javascript:;",
+    readytext: "Coming Soon!",
+    tagType: "tag is-info",
+    tagText: "Blog",
+    postDate: "~2021",
+  },
   {
     cardTitle: "Digital Ocean is Awesome!",
     cardImage: "../images/DigitalOcean_logo.png",
