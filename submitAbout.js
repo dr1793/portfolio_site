@@ -39,7 +39,7 @@ async function submitMessageAbout() {
     .getElementById("submissionErrorMessage")
     .classList.add("has-text-black");
   document.getElementById("submissionErrorMessage").innerHTML =
-    "Thanks for reaching out. I'll get back to you as soon as possible.";
+    "Happy to have you reach out! I'll get back to you as soon as possible.";
 }
 
 function validation(submission, button) {
@@ -93,29 +93,45 @@ function validation(submission, button) {
 }
 
 async function sendToAPI(messageData, button) {
-  console.log(messageData);
+  //console.log(messageData);
 
-  var myHeaders = new Headers();
-  myHeaders.append("Content-Type", "application/json");
-
+  var g_response = grecaptcha.getResponse();
   var response = "";
-  try {
-    response = await fetch("http://localhost:5000", {
-      method: "POST",
-      headers: myHeaders,
-      body: JSON.stringify(messageData),
-      redirect: "follow",
-    });
-  } catch (error) {
-    console.log(error);
+  if (!g_response) {
     button.classList.remove("is-loading");
-    pushErrorMessagetoUser(
-      "We're having trouble communicating with the server. Please try again."
-    );
-    throw new Error("Unable to reach server.");
-  }
+    pushErrorMessagetoUser("Please enter a captcha!");
+    throw new Error("No captcha");
+  } else {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
 
-  console.log(response);
+    try {
+      response = await fetch("http://localhost:5000", {
+        method: "POST",
+        headers: myHeaders,
+        body: JSON.stringify({
+          "Google Token": g_response,
+          "Message Data": messageData,
+        }),
+        redirect: "follow",
+      });
+    } catch (error) {
+      console.log(error);
+      button.classList.remove("is-loading");
+      pushErrorMessagetoUser(
+        "We're having trouble communicating with the captcha server. Please try again."
+      );
+      throw new Error("Unable to reach server.");
+    }
+
+    if (!response.ok) {
+      button.classList.remove("is-loading");
+      pushErrorMessagetoUser(
+        "We're having trouble communicating with the captcha server. Please try again."
+      );
+      throw new Error("Unable to reach server.");
+    }
+  }
 }
 
 function pushErrorMessagetoUser(message) {
