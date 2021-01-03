@@ -1,3 +1,6 @@
+const API_URL = "http://localhost:5000/";
+//const API_URL = "https://api.radeleau.dev"
+
 async function submitMessageAbout() {
   //setting the submit button to load
   const button = document.getElementById("submitButton");
@@ -107,7 +110,7 @@ async function sendToAPI(messageData, button) {
     myHeaders.append("Content-Type", "application/json");
 
     try {
-      response = await fetch("http://localhost:5000", {
+      response = await fetch(API_URL, {
         method: "POST",
         headers: myHeaders,
         body: JSON.stringify({
