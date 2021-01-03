@@ -11,6 +11,7 @@
   max-height: 850px;
 }
 .card-header {
+	height:100%;
 }
 
 .card-footer {

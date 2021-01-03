@@ -32,6 +32,7 @@ async function submitMessageAbout() {
   button.setAttribute("disabled", "");
 
   //Sending the success message
+  document.getElementById("recaptch").classList.add("hidden");
   document
     .getElementById("submissionErrorMessage")
     .classList.remove("has-text-danger");
