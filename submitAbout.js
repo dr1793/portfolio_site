@@ -127,6 +127,7 @@ async function sendToAPI(messageData, button) {
       );
       throw new Error("Unable to reach server.");
     }
+    console.log(response);
 
     if (!response.ok) {
       button.classList.remove("is-loading");
