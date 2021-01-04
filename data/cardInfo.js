@@ -1,5 +1,18 @@
 export const cardInfo = [
   {
+    cardTitle: 'The "Parties" Database',
+    cardImage: "../images/party_db.png",
+    imageLink: "javascript:;",
+    cardText:
+      'Demo ETL/warehousing of a database of "parties"! Based on the database of a popular event management software.',
+    readybutton: "card-footer-item has-text-grey",
+    readylink: "javascript:;",
+    readytext: "Coming Soon!",
+    tagType: "tag is-success",
+    tagText: "Project",
+    postDate: "~2021",
+  },
+  {
     cardTitle: "Tableau Regression Tester",
     cardImage: "../images/tableau_js.png",
     imageLink:
@@ -14,19 +27,6 @@ export const cardInfo = [
     postDate: "~2021",
   },
 
-  {
-    cardTitle: 'The "Parties" Database',
-    cardImage: "../images/party_db.png",
-    imageLink: "javascript:;",
-    cardText:
-      'Demo ETL/warehousing of a database of "parties"! Based on the database of a popular event management software.',
-    readybutton: "card-footer-item has-text-grey",
-    readylink: "javascript:;",
-    readytext: "Coming Soon!",
-    tagType: "tag is-success",
-    tagText: "Project",
-    postDate: "~2021",
-  },
   {
     cardTitle: "What even is Blockstack?",
     cardImage: "../images/blockstack-stx-logo.png",

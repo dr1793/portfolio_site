@@ -11,10 +11,11 @@
   max-height: 850px;
 }
 .card-header {
-  height: 100%;
+  height: 50%;
 }
 
 .card-footer {
+  height: 100%;
 }
 .card-content {
   padding: 18px;
