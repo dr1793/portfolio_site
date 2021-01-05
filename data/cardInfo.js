@@ -18,7 +18,7 @@ export const cardInfo = [
     imageLink:
       "https://help.tableau.com/current/api/js_api/en-us/JavaScriptAPI/js_api.htm",
     cardText:
-      "A light-weight webapp that uses the Tableau JS API to automate regression testing on reports of Tableau Server.",
+      "A light-weight webapp that uses the Tableau JS API to automate regression testing of reports on Tableau Server.",
     readybutton: "card-footer-item has-text-grey",
     readylink: "javascript:;",
     readytext: "Coming Soon!",
