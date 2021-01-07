@@ -1,5 +1,5 @@
-const API_URL = "http://localhost:5000/";
-//const API_URL = "https://api.radeleau.dev"
+//const API_URL = "http://localhost:5000/";
+const API_URL = "http://api.radeleau.dev";
 
 async function submitMessageAbout() {
   //setting the submit button to load
@@ -123,7 +123,7 @@ async function sendToAPI(messageData, button) {
       console.log(error);
       button.classList.remove("is-loading");
       pushErrorMessagetoUser(
-        "We're having trouble communicating with the captcha server. Please try again."
+        "We're having trouble communicating with the captcha server. Please try again later."
       );
       throw new Error("Unable to reach server.");
     }
@@ -132,7 +132,7 @@ async function sendToAPI(messageData, button) {
     if (!response.ok) {
       button.classList.remove("is-loading");
       pushErrorMessagetoUser(
-        "We're having trouble communicating with the captcha server. Please try again."
+        "We're having trouble communicating with the captcha server. Please try again later."
       );
       throw new Error("Unable to reach server.");
     }
