@@ -1,3 +1,4 @@
+const proxyurl = "https://cors-anywhere.herokuapp.com/";
 const API_URL = "https://api.radeleau.dev";
 
 if (window.location.href.includes("localhost")) {
@@ -113,7 +114,7 @@ async function sendToAPI(messageData, button) {
     myHeaders.append("Content-Type", "application/json");
 
     try {
-      response = await fetch(API_URL, {
+      response = await fetch(proxyurl + API_URL, {
         method: "POST",
         headers: myHeaders,
         body: JSON.stringify({
