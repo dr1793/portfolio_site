@@ -1,80 +1,81 @@
 <!DOCTYPE html>
 <html style="height: 100%;">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>David Rameau's Online Portfolio</title>
-		<link rel="stylesheet" href="css/mybulmastyles.css">
-		<link href="styles.css" rel="stylesheet">
-		<link rel="icon" href="images/sad copy 2.png">
-		<script src="node_modules/vue/dist/vue.js"></script>
-	</head>
-	<body class="has-navbar-fixed-top" id="body" style="height: 100%;">
-		<!--navbar-->
-		<nav class="navbar has-shadow is-transparent is-fixed-top" role="navigation" aria-label="main navigation" id="site-navbar">
-			<div class="container">
-				<div class="navbar-brand">
-					<a class="navbar-item" href="#">
-						<img src="images/white.png" id ="cave">
-						<img src="images/white2.png" id ="cave2">
-						<img src="images/white2.png" id ="cave3">
-						<img src="images/border.png" id="border-left">
-					</a>
-					<a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" id="burger" 
-						    data-target="navbarMenu">
-					</a>
-				</div>
-				<div id="nav-links" role="navigation" class="navbar-menu">
-					<div class="navbar-end">
-						<a class="navbar-item" style="text-align:center;" id="home">
-							Home
-						</a>
-						<a class="navbar-item has-text-link" style="text-align:center;" id= "about">
-							About
-						</a>
-						<a class="navbar-item has-text-link pr-1" style="text-align:center;" id="resume" >
-							Resume
-						</a>
-					</div>
-				</div>
-			</div>
-		</nav>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>David Rameau's Online Portfolio</title>
+    <link rel="stylesheet" href="css/mybulmastyles.css" />
+    <link href="styles.css" rel="stylesheet" />
+    <link rel="icon" href="images/sad copy 2.png" />
+    <script src="node_modules/vue/dist/vue.js"></script>
+  </head>
+  <body class="has-navbar-fixed-top" id="body" style="height: 100%;">
+    <!--navbar-->
+    <nav
+      class="navbar has-shadow is-transparent is-fixed-top"
+      role="navigation"
+      aria-label="main navigation"
+      id="site-navbar"
+    >
+      <div class="container">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="#">
+            <img src="images/white.png" id="cave" />
+            <img src="images/white2.png" id="cave2" />
+            <img src="images/white2.png" id="cave3" />
+            <img src="images/border.png" id="border-left" />
+          </a>
+          <a
+            role="button"
+            class="navbar-burger"
+            aria-label="menu"
+            aria-expanded="false"
+            id="burger"
+            data-target="navbarMenu"
+          >
+          </a>
+        </div>
+        <div id="nav-links" role="navigation" class="navbar-menu">
+          <div class="navbar-end">
+            <a class="navbar-item" style="text-align: center;" id="home">
+              Home
+            </a>
+            <a
+              class="navbar-item has-text-link"
+              style="text-align: center;"
+              id="about"
+            >
+              About
+            </a>
+            <a
+              class="navbar-item has-text-link pr-1"
+              style="text-align: center;"
+              id="resume"
+            >
+              Resume
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
 
+    <!--404message-section-->
+    <section class="section pt-10" id="about-section">
+      <div class="container">
+        <h3
+          class="title has-text-centered is-size-4"
+          style="margin-bottom: 48px;"
+        >
+          This page does not exist.
+        </h3>
+      </div>
+      <div class="is-flex is-flex-direction-column is-align-items-center">
+        <a href="https://radeleau.dev" class="button is-dark">
+          Return to Home Page</a
+        >
+      </div>
+    </section>
 
-		<!--404message-section-->
-		<section class="section pt-10" id="about-section">
-			<div class="container">
-				<h3 class="title has-text-centered is-size-4" style="margin-bottom:48px">This page does not exist.</h3>
-			</div>
-			<div class="is-flex is-flex-direction-column is-align-items-center">
-				<a href="https://radeleau.dev" class="button is-dark"> Return to Home Page</a>
-			</div> 
-		</section>
-
-		
-		<!--footer-section-->
-		<footer class="footer" id="site-footer" style="height: 75px;">
-			<div class="container">
-				<div class="columns">
-					<div class="column has-text-right has-text-right-tablet pr-0">
-						<div class="buttons is-right" id="button-list">
-							<a class="button is-small is-text" href="https://github.com/dr1793" id="icon-button">
-								<img src="images/icons/github.svg" height=24px width=24px alt="" id="icon-button">
-							</a>
-							<a class="button is-small is-text" href="mailto:delrameau@gmail.com" id="icon-button">
-								<img src="images/icons/gmail.svg" height=24px width=24px alt="" id="icon-button">
-							</a>
-							<a class="button is-small is-text" href="https://www.linkedin.com/in/david-rameau-518118101/" id="icon-button">
-								<img src="images/icons/linkedin.svg" height=24px width=24px alt="" id="icon-button">
-							</a>
-						</div>
-						<div class="column has-text-right" id:"copyright">
-							<p class="subtitle is-6 has-text-grey">© 2020 David E. Rameau</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</footer>
-		<script src="404.js"></script>
-	</body>
+    <script src="404.js"></script>
+  </body>
 </html>
