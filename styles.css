@@ -168,13 +168,14 @@ body {
 
 #site-footer {
   position: fixed;
-  height: 75px;
   width: 100%;
   left: 0;
   bottom: 0;
   padding-top: 16px;
   padding-right: 20px;
-  padding-bottom: 100px;
+  padding-bottom: 10px;
+  max-height: 7vh;
+  min-height: 45px;
 }
 
 #krabEyes {
@@ -202,7 +203,6 @@ section {
 }
 
 #copyright {
-  padding-top: 0px;
 }
 
 #about-section {
