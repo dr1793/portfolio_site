@@ -8,8 +8,8 @@
 		<link rel="icon" href="images/sad copy 2.png">
 		<script src="node_modules/vue/dist/vue.min.js"></script>
 		<script src="./submitAbout.js"></script>
-		<script type="module" src="myvue.js"></script>
 		<script type="module" src="index.js"></script>
+		<script src="./cardFilter.js"></script>
 		<script src="https://www.google.com/recaptcha/api.js"></script>
 	</head>
 
@@ -57,9 +57,13 @@
 		<section class="section" id="home-section" style="padding-top: 12px;">
 			<div class="container">
 				<h3 class="title has-text-centered is-3" style="margin-bottom: 48px;">Posts</h3>
+				<div class="buttons has-addons is-right">
+					<button id="Project_button" class="button is-success is-selected is-small">Projects</button>
+					<button id="Blog_button" class="button is-info is-selected is-small" >Blogging</button>
+				</div>
 				<div id="projectCards">
 				<div class="row columns is-multiline">
-					<div class="column is-4-tablet is-3-desktop" v-for="(card, index) in cardData" :key="index">
+					<div class="column is-4-tablet is-3-desktop" v-for="(card, index) in shownCards" :key="card.cardTitle">
 						<div class="card" id="card-d">
 							<header class="card-header" id="card-header">
 								<p class="card-header-title">  
@@ -76,7 +80,7 @@
 							</a>
 							<hr/>
 							<div class="card-content has-text-centered">
-								<p>{{card.cardText}}</p>
+								<p class=" is-size-7-mobile">{{card.cardText}}</p>
 							</div>
 							<footer class="card-footer">
 								<p class="card-footer-item">
@@ -170,6 +174,7 @@
 			</div>
 		</footer>
 		<!--<script type= "module" src="/js_features/drag.js"></script>-->
+		<script type="module" src="myvue.js"></script>
 	</body>
 </html>
 

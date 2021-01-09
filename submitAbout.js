@@ -1,4 +1,4 @@
-const API_URL = "https://api.radeleau.dev";
+var API_URL = "https://api.radeleau.dev";
 
 if (window.location.href.includes("localhost")) {
   API_URL = "http://localhost:5000/";
