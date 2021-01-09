@@ -23,11 +23,9 @@
 			<div class="container">
 				<div class="navbar-brand">
 					<a class="navbar-item" href="#">
-						<img src="images/white.png" id ="cave">
-						<img src="images/white2.png" id ="cave2">
-						<img src="images/white2.png" id ="cave3">
+						<div id ="cave"></div>
+						<div id ="cave2"></div>
 						<img src="images/krab.png" alt="Logo" id="krab" href=".">
-						<img src="images/border.png" id="border-left">
 					</a>
 					<a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" id="burger" 
 						    data-target="navbarMenu">
@@ -56,11 +54,12 @@
 		<!--Home Section-->
 		<section class="section" id="home-section" style="padding-top: 12px;">
 			<div class="container">
-				<h3 class="title has-text-centered is-3" style="margin-bottom: 48px;">Posts</h3>
+				<h3 class="title has-text-centered is-3" style="margin-bottom: 48px;">Posts
 				<div class="buttons has-addons is-right">
 					<button id="Project_button" class="button is-success is-selected is-small">Projects</button>
 					<button id="Blog_button" class="button is-info is-selected is-small" >Blogging</button>
 				</div>
+				</h3>
 				<div id="projectCards">
 				<div class="row columns is-multiline">
 					<div class="column is-4-tablet is-3-desktop" v-for="(card, index) in shownCards" :key="card.cardTitle">

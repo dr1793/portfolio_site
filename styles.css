@@ -118,28 +118,31 @@ hr {
 
 #cave {
   position: absolute;
-  min-height: 57px;
+  min-height: 61px;
+  min-width: 72px;
   top: -1px;
   left: -73px;
   z-index: 1000;
   box-shadow: 5px -3px 9px -5px #888888;
+  opacity: 1;
+  background: white;
+  border-right: 2px rgb(242, 242, 242);
+  border-style: solid;
+  border-left-width: 0px;
+  border-top-width: 0px;
+  border-bottom-width: 0px;
 }
 
 #cave2 {
   position: absolute;
-  min-height: 57px;
+  min-width: 72px;
+  min-height: 61px;
   top: 5px;
-  left: -73px;
+  left: -75px;
   z-index: 1000;
   display: none;
-}
-
-#cave3 {
-  position: absolute;
-  min-height: 57px;
-  top: 2px;
-  left: -73px;
-  z-index: 1000;
+  opacity: 1;
+  background: white;
 }
 
 #krab {
