@@ -1,5 +1,4 @@
 #main {
-  border: 1px solid black;
   padding: 1px;
   display: flex;
   flex-direction: column;
@@ -9,16 +8,14 @@
   margin: 10px;
 }
 #v1 {
-  border: 1px solid black;
-  min-width: 60vw;
+  min-width: 70vw;
   max-width: 80vw;
   min-height: 400px;
   flex-grow: 2;
   overflow-y: auto;
 }
 #v2 {
-  border: 1px solid black;
-  min-width: 60vw;
+  min-width: 70vw;
   max-width: 80vw;
   min-height: 400px;
   flex-grow: 2;
@@ -32,4 +29,19 @@
 .clear {
   clear: both;
   height: 20px;
+}
+#site-footer {
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  padding-top: 16px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  min-height: 45px;
+}
+#button-list {
+  margin-bottom: 0px;
+}
+#icon-button {
+  opacity: 0.8;
 }

@@ -13,42 +13,39 @@
 <body>
     <div class="section">
         <!--header section-->
-        <div>
-            <div class="is-flex is-flex-direction-row is-align-items-center is-justify-content-space-between">
-                    <h3 class="title has-text-left is-3">
-                        Tableau Report Comparison Tester
-                    </h3>
-                <div class="section is-flex has-text-left pt-1">
-                    <a href="../#" id="returnButton" class="button is-danger is-outlined">
-                        Return to site home
-                    </a>
-                </div>
-            </div>
+        <div class="is-flex is-flex-direction-row is-align-items-start is-justify-content-space-between">
             <div>
+                <h3 class="title has-text-left is-3 mb-4">
+                    Tableau Report Comparison Tester
+                </h3>
+            </div>
+            <div class="section has-text-left pr-6 pt-0">
+                <a href="https://radeleau.dev" id="returnButton" class="button is-danger is-light">
+            Return to site home
+          </a>
+		<div>
                 <h3 class="subtitle has-text-left is-6 m-3">
-                    Tired of publishing minor changes to a report, only to find that they had unnoticed and
-                    unintended consequences?
+                    Tired of publishing a minor changes to a report, only to find that they had unnoticed and unintentional consequences?
                 </h3>
                 <h3 class="subtitle has-text-left is-6 ml-3">
                     Tired of spending countless hours searching (and failing to catch) those changes?
                 </h3>
                 <h3 class="subtitle has-text-left is-6 m-3">
-                    This webpage is a tool that will comb through a new version of a report, compare it to it's
-                    production version, and output the differences as JSON.
+                    This webpage is a tool that will comb through a new version of a report, compare it to it's production version, and output the differences as JSON.
                 </h3>
+		</div>
             </div>
         </div>
 
         <!--how-to section-->
         <div class="has-text-center">
-            <div class="clear"></div>
             <div class="is-flex is-flex-direction-column is-align-items-center">
                 <button id="howToButton" class="button is-small is-ghost is-focused">
-                    How-To
-                </button>
+            How-To
+          </button>
             </div>
             <div class="is-hidden" id="howToText">
-                <pre class="is-family-primary">
+                <pre>
             How to: 
           </pre>
                 <div class="clear"></div>
@@ -60,15 +57,13 @@
         <!--input section-->
         <div class="is-flex is-flex-direction-column is-align-items-center">
             <div class="clear"></div>
-            <input class="input" type="text" placeholder="URL to report in development/QA environment (Demo: )"
-                id="input" type="text" />
+            <input class="input" type="text" placeholder="URL to report in development/QA environment (Demo: )" id="input" type="text" />
             <div class="clear"></div>
-            <input class="input" type="text" placeholder="URL to report in production environment (Demo: )" id="input2"
-                type="text" />
+            <input class="input" type="text" placeholder="URL to report in production environment (Demo: )" id="input2" type="text" />
             <div class="clear"></div>
             <button class="button is-light" id="button">
-                Compare these Reports
-            </button>
+          Compare these Reports
+        </button>
             <div class="clear"></div>
         </div>
 
@@ -109,8 +104,7 @@
                         <a class="button is-small is-text" href="mailto:delrameau@gmail.com" id="icon-button">
                             <img src="../images/icons/gmail.svg" height="20px" width="20px" id="icon-button">
                         </a>
-                        <a class="button is-small is-text" href="https://www.linkedin.com/in/david-rameau-518118101/"
-                            id="icon-button">
+                        <a class="button is-small is-text" href="https://www.linkedin.com/in/david-rameau-518118101/" id="icon-button">
                             <img src="../images/icons/linkedin.svg" height="20px" width="20px" id="icon-button">
                         </a>
                     </div>
