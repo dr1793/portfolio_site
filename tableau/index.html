@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../css/mybulmastyles.css" />
+    <link rel="icon" href="../images/sad copy 2.png" />
+    <title>Tableau Embed</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body style="height: 2300px;">
+    <div class="section">
+      <!--header section-->
+      <div>
+        <h3 class="title has-text-left is-3 mb-4 mt-6">
+          Tableau Report Comparison Tester
+        </h3>
+        <div class="section has-text-right pr-6">
+          <a
+            href="https://radeleau.dev"
+            id="returnButton"
+            class="button is-danger is-light"
+          >
+            Return to site home
+          </a>
+        </div>
+      </div>
+
+      <!--how-to section-->
+      <div class="has-text-center">
+        <hr />
+        <div class="is-hidden" id="howToText">
+          <pre>
+How to: 
+    </pre
+          >
+        </div>
+
+        <div class="is-flex is-flex-direction-column is-align-items-center">
+          <div class="clear"></div>
+          <button id="howToButton" class="button is-dark">
+            <div class="clear"></div>
+            How-To
+          </button>
+        </div>
+        <hr />
+      </div>
+
+      <!--input section-->
+      <div class="is-flex is-flex-direction-column is-align-items-center">
+        <div class="clear"></div>
+        <input
+          class="input"
+          type="text"
+          placeholder="URL to report in development/QA environment"
+          id="input"
+          type="text"
+        />
+        <div class="clear"></div>
+        <input
+          class="input"
+          type="text"
+          placeholder="URL to report in production environment"
+          id="input2"
+          type="text"
+        />
+        <div class="clear"></div>
+        <button class="button is-light" id="button">
+          Compare these Reports
+        </button>
+        <div class="clear"></div>
+      </div>
+
+      <!--Report Section-->
+      <div class="is-flex is-flex-direction-column is-align-items-center">
+        <box
+          id="main"
+          class="is-flex is-flex-direction-column is-align-items-center"
+        >
+          <H2 class="ReportTitle is-size-5" id="reportName">DEV/QA Report: </H2>
+          <H2 class="is-size-4" id="reportName"> </H2>
+          <box id="v1"></box>
+          <H2 class="ReportTitle is-size-5" id="reportName2">PROD Report: </H2>
+          <H2 class="is-size-4" id="reportName"> </H2>
+          <box id="v2"></box>
+          <H3 id="diffexplanation"></H3>
+          <div id="diff"></div>
+        </box>
+      </div>
+    </div>
+    <script src="https://public.tableau.com/javascripts/api/tableau-2.min.js"></script>
+    <script type="module" src="reg_tests_controller.js"></script>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+#main {
+  border: 1px solid black;
+  padding: 1px;
+  display: flex;
+  flex-direction: column;
+  width: 90vw;
+}
+#main > div {
+  margin: 10px;
+}
+#v1 {
+  border: 1px solid black;
+  min-width: 60vw;
+  max-width: 80vw;
+  min-height: 400px;
+  flex-grow: 2;
+  overflow-y: auto;
+}
+#v2 {
+  border: 1px solid black;
+  min-width: 60vw;
+  max-width: 80vw;
+  min-height: 400px;
+  flex-grow: 2;
+  overflow-y: auto;
+}
+#diffexplanation {
+  white-space: pre;
+}
+.ReportTitle {
+}
+.clear {
+  clear: both;
+  height: 20px;
+}
