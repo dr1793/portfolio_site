@@ -8,6 +8,10 @@
     <link rel="icon" href="../images/sad copy 2.png" />
     <title>Tableau Report Comparison Test</title>
     <link rel="stylesheet" href="styles.css" />
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+    <script type="module" src="tablevue.js"></script>
+    <script type="text/javascript"
+        src="../node_modules/bulma-extensions/bulma-accordion/dist/js/bulma-accordion.min.js"></script>
 </head>
 
 <body>
@@ -15,9 +19,9 @@
         <!--header section-->
         <div>
             <div class="is-flex is-flex-direction-row is-align-items-center is-justify-content-space-between">
-                    <h3 class="title has-text-left is-3">
-                        Tableau Report Comparison Tester
-                    </h3>
+                <h3 class="title has-text-left is-3">
+                    Tableau Report Comparison Tester
+                </h3>
                 <div class="section is-flex has-text-left pt-1">
                     <a href="../#" id="returnButton" class="button is-danger is-outlined">
                         Return to site home
@@ -85,14 +89,19 @@
                 <div id="diff"></div>
 
                 <!-- Results Table-->
-                <table class="table" id="resultsTable">
-                    <thead>
-                        <tr>
-                            <th>Results</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
+                <p>Results</p>
+                <section class="accordions" id="workbookRows">
+                    <article class="accordion" v-for="(row, index) in tabRows" :key="index">
+                        <div class="accordion-header toggle has-background-danger">
+                            <p>{{row.header}}</p>
+                        </div>
+                        <div class="accordion-body" v-if="row.contentflag">
+                            <div class="accordion-content">
+                                {{row.content}}
+                            </div>
+                        </div>
+                    </article>
+                </section>
             </div>
         </div>
     </div>

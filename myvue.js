@@ -12,7 +12,6 @@ var projectCards = new Vue({
   computed: {
     shownCards: function () {
       return this.cardData.filter((card) => {
-        console.log(this.filterSet);
         return this.filterSet[card.tagText];
       });
     },
@@ -34,7 +33,6 @@ function filterCardsInfo(filter) {
       ? (projectCards.filterSet.Blog = 1)
       : (projectCards.filterSet.Project = 1);
   }
-  console.log(projectCards.filterSet);
 }
 
 document

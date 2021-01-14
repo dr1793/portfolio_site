@@ -1,8 +1,75 @@
-export async function Test_ValidateTabs(viz) {
-  console.log(
-    `Validating that the correct tabs are published and that they are published in the correct order.`
-  );
+//TODO: Choose sheets that shouldn't be the same to exclude on Dashboard
+export async function Test_ValidateVisibleDataAsync(
+  prod_viz,
+  qa_viz,
+  sheetlist = []
+) {
+  var toBePublished =
+    sheetlist.length == 0
+      ? qa_viz.getWorkbook().getPublishedSheetsInfo()
+      : sheetlist.slice(0);
 
+  await prod_viz.revertAllAsync();
+  await qa_viz.revertAllAsync();
+  for (const sheet of toBePublished) {
+    try {
+      var sheetName = sheet.getName();
+      if (sheet.getSheetType() == "dashboard") {
+        //Add the list of sheets in the dashboard to the list, after the dashboard list item
+        //then skip processing the dashboard
+
+        await qa_viz.getWorkbook().activateSheetAsync(sheet);
+        var dashboard = qa_viz.getWorkbook().getActiveSheet();
+        var dashboardSheets = [];
+
+        for (const dashboardSheet of dashboard.getWorksheets()) {
+          dashboardSheets.push(dashboardSheet);
+        }
+        await Test_ValidateVisibleDataAsync(prod_viz, qa_viz, dashboardSheets);
+        continue;
+      } else {
+        await prod_viz.getWorkbook().activateSheetAsync(sheetName);
+        await qa_viz.getWorkbook().activateSheetAsync(sheetName);
+        var worksheet_prod = prod_viz.getWorkbook().getActiveSheet();
+        var worksheet_qa = qa_viz.getWorkbook().getActiveSheet();
+      }
+      var data_prod = await worksheet_prod.getSummaryDataAsync();
+      var data_qa = await worksheet_qa.getSummaryDataAsync();
+
+      if (JSON.stringify(data_prod) === JSON.stringify(data_qa)) {
+        console.log(
+          `Pass. Visible data on "${sheetName}" is the same between QA and PROD.`
+        );
+      } else {
+        console.log(
+          `Fail. Visible data on "${sheetName}" tab is not the same between QA and PROD.`
+        );
+        // TO-DO diff.
+        var prod = JSON.stringify(data_prod);
+        var qa = JSON.stringify(data_qa);
+        console.log(
+          "Scroll down the page to see the difference in data between QA and PROD."
+        );
+        document.getElementById("diffexplanation").innerHTML =
+          "The below is a comparison of the report data as JSON. \n\t Data that is the same between the two versions is plain.\n\t Data with a strikethrough is in PROD but not QA.\n\t Data that is underlined is in QA but not PROD.";
+        document.getElementById("diff").innerHTML += `${sheetName}\n`;
+        document.getElementById("diff").innerHTML += diffString(qa, prod);
+
+        //throw new Error(`Fail. Visible data on "${sheet}" tab is not the same between QA and PROD.`)
+      }
+    } catch (err) {
+      if (err.tableauSoftwareErrorCode !== "sheetNotInWorkbook") {
+        throw err;
+      } else {
+        //add the message to the document that the sheet wasn't found
+        console.log("Sheet not found in Workbook");
+        continue;
+      }
+    }
+  }
+}
+
+export async function Test_ValidateTabs(viz) {
   //Finding the sheet that filters the Org Report Report by Organization
   var tabsinfo = viz.getWorkbook().getPublishedSheetsInfo();
 
@@ -58,7 +125,7 @@ async function getParameterDefaultsFromWorkbook(viz) {
 }
 
 //Helper method to get a list of the names of all published sheets, given a viz object.
-function getPublishedSheetsFromViz(viz) {
+function getPublishedSheetsFromVizAsList(viz) {
   var sheetsobject = viz.getWorkbook().getPublishedSheetsInfo();
   var sheets_list = [];
 
@@ -73,7 +140,7 @@ async function getFilterDefaultsSheetOrDashboard(viz) {
   var output = "";
 
   //Gets the published sheets.
-  const sheets = getPublishedSheetsFromViz(viz);
+  const sheets = getPublishedSheetsFromVizAsList(viz);
   var workbook = viz.getWorkbook();
 
   for (const sheet of sheets) {
@@ -198,67 +265,5 @@ async function addUnselectedValuesParameters(workbook_name, parameter) {
     document.getElementById(
       "diffexplanation"
     ).innerHTML += `${workbook_name},Parameter,${parameter["_impl"]["$h"]},${allowableValue["formattedValue"]},0\n`;
-  }
-}
-
-//TODO: Choose sheets that shouldn't be the same to exclude from the list
-//TODO: Figure out a reasonable way to treat dashboards
-//TODO: Choose sheets that shouldn't be the same to exclude on Dashboard
-export async function Test_ValidateVisibleData(viz1, viz2) {
-  console.log(
-    "Validating that the data is unchanged between sheets that should be the same in QA and in PROD."
-  );
-  //console.log(viz1.getWorkbook().getPublishedSheetsInfo())
-
-  let toBePublished = getPublishedSheetsFromViz(viz2);
-
-  for (const sheet of toBePublished) {
-    if (Array.isArray(sheet)) {
-      //If the sheet is an array, get the specific sheet on the dashboard
-      var db1 = await viz1.getWorkbook().activateSheetAsync(sheet[0]);
-      var db2 = await viz2.getWorkbook().activateSheetAsync(sheet[0]);
-      var worksheet1 = db1.getWorksheets().get(sheet[1]);
-      var worksheet2 = db2.getWorksheets().get(sheet[1]);
-      await worksheet1.applyFilterAsync(
-        "Year ",
-        ["2019", "2020"],
-        tableau.FilterUpdateType.REPLACE
-      );
-      await worksheet2.applyFilterAsync(
-        "Year ",
-        ["2019", "2020"],
-        tableau.FilterUpdateType.REPLACE
-      );
-    } else {
-      await viz1.getWorkbook().activateSheetAsync(sheet);
-      await viz2.getWorkbook().activateSheetAsync(sheet);
-      var worksheet1 = viz1.getWorkbook().getActiveSheet();
-      var worksheet2 = viz2.getWorkbook().getActiveSheet();
-    }
-
-    var data_v1 = await worksheet1.getSummaryDataAsync();
-    var data_v2 = await worksheet2.getSummaryDataAsync();
-
-    if (JSON.stringify(data_v1) === JSON.stringify(data_v2)) {
-      console.log(
-        `Pass. Visible data on "${sheet}" is the same between QA and PROD.`
-      );
-    } else {
-      console.log(
-        `Fail. Visible data on "${sheet}" tab is not the same between QA and PROD.`
-      );
-      // TO-DO diff.
-      var d1 = JSON.stringify(data_v1);
-      var d2 = JSON.stringify(data_v2);
-      console.log(
-        "Scroll down the page to see the difference in data between QA and PROD."
-      );
-      document.getElementById("diffexplanation").innerHTML =
-        "The below is a comparison of the report data as JSON. \n\t Data that is the same between the two versions is plain.\n\t Data with a strikethrough is in PROD but not QA.\n\t Data that is underlined is in QA but not PROD.";
-      document.getElementById("diff").innerHTML += `${sheet}\n`;
-      document.getElementById("diff").innerHTML += diffString(d2, d1);
-
-      //throw new Error(`Fail. Visible data on "${sheet}" tab is not the same between QA and PROD.`)
-    }
   }
 }

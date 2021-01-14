@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bulma-extensions": "^6.2.7",
     "eslint": "^7.16.0",
     "vue": "^2.6.12"
   },

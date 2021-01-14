@@ -3,7 +3,7 @@ import { diffString } from "./stringDiff.js";
 import {
   Test_ValidateFilterDefaults,
   Test_ValidateTabs,
-  Test_ValidateVisibleData,
+  Test_ValidateVisibleDataAsync,
 } from "./test_defs.js";
 var diff = "";
 const inputNode = document.getElementById("input");
@@ -21,7 +21,7 @@ async function runTests(url) {
       "v2",
     ],
     [
-      "https://public.tableau.com/views/CustomerRanking_15970671380680/Dashboard",
+      "https://public.tableau.com/views/coronavirus_15853097409580/coronavirus-TV",
       "v1",
     ],
   ];
@@ -43,9 +43,12 @@ async function runTests(url) {
   //await Test_ValidateFilterDefaults(vizlist[0])
   //await Test_ValidateTabs(vizlist[1])
   //console.log("Scroll down for CSV of Report Filters")
-  //await Test_ValidateVisibleData(vizlist[1], vizlist[0]);
+  console.log(
+    "Validating that the data is unchanged between sheets that should be the same in QA and in PROD."
+  );
+  await Test_ValidateVisibleDataAsync(vizlist[1], vizlist[0]);
+  console.log("Test Complete");
 
-  console.log(vizlist);
   return vizlist;
 }
 
