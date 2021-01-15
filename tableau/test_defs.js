@@ -4,28 +4,46 @@ export async function Test_ValidateVisibleDataAsync(
   qa_viz,
   sheetlist = []
 ) {
+  console.log(
+    "Validating that the data is unchanged between sheets that should be the same in QA and in PROD."
+  );
   var toBePublished =
     sheetlist.length == 0
       ? qa_viz.getWorkbook().getPublishedSheetsInfo()
       : sheetlist.slice(0);
 
-  await prod_viz.revertAllAsync();
-  await qa_viz.revertAllAsync();
+  try {
+    toBePublished[0].getParentDashboard();
+    console.log(toBePublished[0]);
+  } catch {
+    await prod_viz.revertAllAsync();
+    await qa_viz.revertAllAsync();
+  }
   for (const sheet of toBePublished) {
     try {
       var sheetName = sheet.getName();
+
       if (sheet.getSheetType() == "dashboard") {
         //Add the list of sheets in the dashboard to the list, after the dashboard list item
         //then skip processing the dashboard
+        var dashboardName = sheet["$0"]["name"];
 
-        await qa_viz.getWorkbook().activateSheetAsync(sheet);
-        var dashboard = qa_viz.getWorkbook().getActiveSheet();
-        var dashboardSheets = [];
+        await qa_viz.getWorkbook().activateSheetAsync(dashboardName);
+        await prod_viz.getWorkbook().activateSheetAsync(dashboardName);
 
-        for (const dashboardSheet of dashboard.getWorksheets()) {
-          dashboardSheets.push(dashboardSheet);
+        let dashboard = qa_viz.getWorkbook().getActiveSheet();
+
+        while (dashboard.getName() != dashboardName) {
+          await qa_viz.getWorkbook().activateSheetAsync(dashboardName);
+          await prod_viz.getWorkbook().activateSheetAsync(dashboardName);
+          dashboard = qa_viz.getWorkbook().getActiveSheet();
         }
-        await Test_ValidateVisibleDataAsync(prod_viz, qa_viz, dashboardSheets);
+
+        await Test_ValidateVisibleData(
+          prod_viz,
+          qa_viz,
+          dashboard.getWorksheets()
+        );
         continue;
       } else {
         await prod_viz.getWorkbook().activateSheetAsync(sheetName);
@@ -33,8 +51,13 @@ export async function Test_ValidateVisibleDataAsync(
         var worksheet_prod = prod_viz.getWorkbook().getActiveSheet();
         var worksheet_qa = qa_viz.getWorkbook().getActiveSheet();
       }
-      var data_prod = await worksheet_prod.getSummaryDataAsync();
-      var data_qa = await worksheet_qa.getSummaryDataAsync();
+      try {
+        var data_prod = await worksheet_prod.getSummaryDataAsync();
+        var data_qa = await worksheet_qa.getSummaryDataAsync();
+      } catch {
+        var data_prod = await sheet.getSummaryDataAsync();
+        var data_qa = await sheet.getSummaryDataAsync();
+      }
 
       if (JSON.stringify(data_prod) === JSON.stringify(data_qa)) {
         console.log(
