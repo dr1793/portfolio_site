@@ -3,8 +3,9 @@ import { diffString } from "./stringDiff.js";
 import {
   Test_ValidateFilterDefaults,
   Test_ValidateTabs,
-  Test_ValidateVisibleDataAsync,
-} from "./test_defs.js";
+} from "./test_defs_inactive.js";
+import { Test_ValidateVisibleDataAsync } from "./test_defs.js";
+
 var diff = "";
 const inputNode = document.getElementById("input");
 const inputNode2 = document.getElementById("input2");
@@ -16,15 +17,17 @@ var vizlistb = [];
 
 async function runTests(url) {
   var urllist = [
-    [
-      "https://public.tableau.com/views/CustomerRanking_15970671380680/Dashboard",
-      "v2",
-    ],
-    [
-      "https://public.tableau.com/views/coronavirus_15853097409580/coronavirus-TV",
-      "v1",
-    ],
+    ["https://public.tableau.com/views/SuperstorePROD_Test/Customers", "v2"],
+    ["https://public.tableau.com/views/SuperstoreQA_Test/Customers", "v1"],
   ];
+
+  if (vizlistb) {
+    console.log(vizlistb);
+    console.log("clearing vizzes");
+    for (var viz of vizlistb) {
+      viz.dispose();
+    }
+  }
 
   let vizlist = await Promise.all(
     urllist.map(async (url_div) => {
@@ -57,13 +60,7 @@ buttonNode.addEventListener("click", async () => {
   const inputValue = [inputNode.value];
   inputValue.push(inputNode2.value);
 
-  if (testflag) {
-    await Test_ValidateVisibleData(vizlistb[1], vizlistb[0]);
-  } else {
-    console.log("test 1");
-    vizlistb = await runTests(inputValue);
-    testflag = 1;
-  }
+  vizlistb = await runTests(inputValue);
 });
 
 howToButtonNode.addEventListener("click", () => {
@@ -74,4 +71,11 @@ howToButtonNode.addEventListener("click", () => {
     howToSection.classList.add("is-hidden");
     howToButtonNode.innerHTML = "How-To";
   }
+});
+
+inputNode.addEventListener("input", () => {
+  buttonNode.innerHTML = "Compare these Reports";
+});
+inputNode2.addEventListener("input", () => {
+  buttonNode.innerHTML = "Compare these Reports";
 });
