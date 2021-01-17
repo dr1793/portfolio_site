@@ -6,12 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="../css/mybulmastyles.css" />
     <link rel="icon" href="../images/sad copy 2.png" />
-    <title>Tableau Report Comparison Test</title>
+    <title>Tableau Report Comparison Tool</title>
     <link rel="stylesheet" href="styles.css" />
     <script src="../node_modules/vue/dist/vue.min.js"></script>
     <script type="module" src="tablevue.js"></script>
-    <script type="text/javascript"
-        src="../node_modules/bulma-extensions/bulma-accordion/dist/js/bulma-accordion.min.js"></script>
 </head>
 
 <body>
@@ -20,7 +18,7 @@
         <div>
             <div class="is-flex is-flex-direction-row is-align-items-center is-justify-content-space-between">
                 <h3 class="title has-text-left is-3">
-                    Tableau Report Comparison Tester
+                    Tableau Report Comparison Tool
                 </h3>
                 <div class="section is-flex has-text-left pt-1">
                     <a href="../#" id="returnButton" class="button is-danger is-outlined">
@@ -103,7 +101,7 @@
 
                 <!-- Results Table-->
                 <p class="is-size-5">Results</p>
-		<article class="message"><div class="message-body is-size-7" id="diffexplanation"></div></article>
+		<article class="message"><div class="message-body is-size-7 is-hidden" id="diffexplanation"></div></article>
                 <div class="box " id="workbookRows">
                     <details id="resultsTableRow" class="mb-1" v-for="(row, index) in tabRows" v-bind:class="[row.contentflag ? 'has-background-danger' : 'has-background-success']" :v-bind:key="row.header" v-bind:contentflag="row.contentflag">
                             <summary>{{row.header}}</summary>

@@ -89,6 +89,7 @@ export async function Test_ValidateVisibleDataAsync(
         var data_prod = await sheet.getSummaryDataAsync();
         var data_qa = await sheet.getSummaryDataAsync();
       }
+      document.getElementById("diffexplanation").classList.remove("is-hidden");
       document.getElementById("diffexplanation").innerHTML =
         "Worksheets/Tabs in green passed the comparison and are the same between QA and PROD; tabs in red did not. <br> You can expand the red tabs for a view of the data that is changed.";
 

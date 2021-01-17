@@ -2,7 +2,7 @@ export function diffStringWrapper(string) {
   var indicies = [];
   var output = "";
   var i = 0;
-  var windowSize = 1000;
+  var windowSize = 1500;
   var count = 1;
   while (i < string.length - 5) {
     if (
