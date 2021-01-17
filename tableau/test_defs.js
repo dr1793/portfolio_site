@@ -1,5 +1,6 @@
 import { diffString } from "./stringDiff.js";
 import { workbookRows } from "./tablevue.js";
+import { diffStringWrapper } from "./diffStringWrapper.js";
 
 export async function Test_DashboardObjects(qa_dashboard, prod_dashboard) {
   let qa_objects = qa_dashboard.getObjects();
@@ -33,20 +34,18 @@ export async function Test_ValidateVisibleDataAsync(
   console.log(
     "Validating that the data is unchanged between sheets that should be the same in QA and in PROD."
   );
+
+  //getting the list of published sheets. If it's a dashboard, the sheets were passed as an argument of the function
   var toBePublished =
     sheetlist.length == 0
       ? qa_viz.getWorkbook().getPublishedSheetsInfo()
       : sheetlist.slice(0);
 
+  //Getting the original sheet to return to it
   let firstSheet_qa = qa_viz.getWorkbook().getActiveSheet();
   let firstSheet_prod = prod_viz.getWorkbook().getActiveSheet();
 
-  try {
-    toBePublished[0].getParentDashboard();
-  } catch {
-    await prod_viz.revertAllAsync();
-    await qa_viz.revertAllAsync();
-  }
+  //Main loop for comparison
   for (const sheet of toBePublished) {
     try {
       var sheetName = sheet.getName();
@@ -70,6 +69,7 @@ export async function Test_ValidateVisibleDataAsync(
           dashboard,
           prod_viz.getWorkbook().getActiveSheet()
         );
+        //call itself again to test sheets on a dashboard
         await Test_ValidateVisibleDataAsync(
           prod_viz,
           qa_viz,
@@ -89,6 +89,8 @@ export async function Test_ValidateVisibleDataAsync(
         var data_prod = await sheet.getSummaryDataAsync();
         var data_qa = await sheet.getSummaryDataAsync();
       }
+      document.getElementById("diffexplanation").innerHTML =
+        "Worksheets/Tabs in green passed the comparison and are the same between QA and PROD; tabs in red did not. <br> You can expand the red tabs for a view of the data that is changed.";
 
       if (JSON.stringify(data_prod) === JSON.stringify(data_qa)) {
         console.log(
@@ -99,7 +101,6 @@ export async function Test_ValidateVisibleDataAsync(
           contentflag: 0,
           content: "  ",
         });
-        workbookRows.attachAccordions();
       } else {
         console.log(
           `Fail. Visible data on "${sheetName}" tab is not the same between QA and PROD.`
@@ -110,16 +111,13 @@ export async function Test_ValidateVisibleDataAsync(
         console.log(
           "Scroll down the page to see the difference in data between QA and PROD."
         );
-        document.getElementById("diffexplanation").innerHTML =
-          "In red below is a comparison of the report data as JSON. \n\t Data that is the same between the two versions is plain.\n\t Data with a strikethrough is in PROD but not QA.\n\t Data that is underlined is in QA but not PROD.";
 
         workbookRows.pushTab({
           header: `${sheetName}`,
           contentflag: 1,
-          //content: `${JSON.stringify(diffString(qa, prod))}`,
-          content: "hi",
+          content: `${JSON.stringify(diffStringWrapper(diffString(qa, prod)))}`,
+          //content: "hi",
         });
-        workbookRows.attachAccordions();
 
         console.log(
           `Fail. Visible data on "${sheetName}" tab is not the same between QA and PROD.`

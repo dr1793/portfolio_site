@@ -1,18 +1,9 @@
-var data_tabRows = [
-  {
-    header: "rere",
-    contentflag: 1,
-    //content: `${JSON.stringify(diffString(qa, prod))}`,
-    content: "hi",
-  },
-];
+var data_tabRows = [];
 
 export var workbookRows = new Vue({
   el: "#workbookRows",
   data: { tabRows: data_tabRows },
-  mounted: function () {
-    this.accordions = bulmaAccordion.attach();
-  },
+  mounted: function () {},
   methods: {
     pushTab(data) {
       if (
@@ -22,9 +13,6 @@ export var workbookRows = new Vue({
       ) {
         this.tabRows.push(data);
       }
-    },
-    attachAccordions() {
-      this.accordions = bulmaAccordion.attach();
     },
   },
 });

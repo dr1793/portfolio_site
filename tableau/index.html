@@ -30,11 +30,11 @@
             </div>
             <div>
                 <h3 class="subtitle has-text-left is-6 m-3">
-                    Tired of publishing minor changes to a report, only to find that they had unnoticed and
+                    Tired of publishing minor changes to a report, only to find that those changes had unnoticed and
                     unintended consequences?
                 </h3>
                 <h3 class="subtitle has-text-left is-6 ml-3">
-                    Tired of spending countless hours searching (and failing to catch) those changes?
+                    Tired of spending countless hours in QA searching for those changes and failing to catch them?
                 </h3>
                 <h3 class="subtitle has-text-left is-6 m-3">
                     This webpage is a tool that will comb through a new version of a report, compare it to it's
@@ -99,24 +99,19 @@
                 <H2 class="ReportTitle is-size-5" id="reportName2">PROD Report: </H2>
                 <H2 class="is-size-4" id="reportName"> </H2>
                 <div class="box" id="v2"></div>
-                <H3 id="diffexplanation"></H3>
                 <div id="diff"></div>
 
                 <!-- Results Table-->
                 <p class="is-size-5">Results</p>
-                <section class="accordions" id="workbookRows">
-                    <article class="accordion " v-for="(row, index) in tabRows" v-bind:key="row.header" v-bind:contentflag="row.contentflag">
-			    <div class="accordion-header" v-bind:class="[row.contentflag ? 'has-background-danger' : 'has-background-success']">
-                            <p>{{row.header}}</p>
-			    <button class="toggle" v-if="row.contentflag" aria-label="toggle"></button>
-                        </div>
-                        <div class="accordion-body" v-if="row.contentflag">
-                            <div class="accordion-content">
-                                {{row.content}}
-                            </div>
-                        </div>
-                    </article>
-                </section>
+		<article class="message"><div class="message-body is-size-7" id="diffexplanation"></div></article>
+                <div class="box " id="workbookRows">
+                    <details id="resultsTableRow" class="mb-1" v-for="(row, index) in tabRows" v-bind:class="[row.contentflag ? 'has-background-danger' : 'has-background-success']" :v-bind:key="row.header" v-bind:contentflag="row.contentflag">
+                            <summary>{{row.header}}</summary>
+			    <div class="has-background-white">
+				<div v-html="row.content">{{row.content}}</div>
+				</div>
+                    </details>
+                </div>
             </div>
         </div>
     </div>

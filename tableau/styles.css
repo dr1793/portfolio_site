@@ -10,6 +10,7 @@
 #v1 {
   min-width: 70vw;
   max-width: 80vw;
+  max-height: 800px;
   min-height: 400px;
   flex-grow: 2;
   overflow-y: auto;
@@ -18,11 +19,13 @@
   min-width: 70vw;
   max-width: 80vw;
   min-height: 400px;
+  max-height: 800px;
   flex-grow: 2;
   overflow-y: auto;
 }
 #diffexplanation {
-  white-space: pre;
+  border-left: 0px;
+  max-width: 78vw;
 }
 .ReportTitle {
 }
@@ -44,4 +47,11 @@
 }
 #icon-button {
   opacity: 0.8;
+}
+#resultsTableRow {
+  border-radius: 5px;
+  min-width: 80vw;
+}
+#workbookRows {
+  min-width: 70vw;
 }

@@ -29,6 +29,7 @@ async function runTests(url) {
     }
   }
 
+  buttonNode.classList.add("is-loading");
   let vizlist = await Promise.all(
     urllist.map(async (url_div) => {
       return await initialize_function(url_div[0], url_div[1]);
@@ -50,6 +51,7 @@ async function runTests(url) {
     "Validating that the data is unchanged between sheets that should be the same in QA and in PROD."
   );
   await Test_ValidateVisibleDataAsync(vizlist[1], vizlist[0]);
+  buttonNode.classList.remove("is-loading");
   console.log("Test Complete");
 
   return vizlist;
