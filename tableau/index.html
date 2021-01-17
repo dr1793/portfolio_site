@@ -51,30 +51,32 @@
             </div>
             <div class="is-hidden" id="howToText">
                 <pre class="is-family-primary">
-	     <strong>Step 1</strong>
-	    	Enter a link to a worksheet of your report in the following format: 
-		    <em>(without spaces and substituting the bold text)</em>
+<strong>Step 1</strong>
+Enter a link to a worksheet of your report in the following format: 
+    <em>(without spaces and substituting the bold text)</em>
 
-			https://   <strong><em>{-your-server-here-}</em></strong>   /views/   <strong><em>{-your-workbook-here-}</em></strong>   /   <strong><em>{-your-worksheet-here-}</em></strong>
+	https://   <strong><em>{-your-server-here-}</em></strong>   /views/   <strong><em>{-your-workbook-here-}</em></strong>   /   <strong><em>{-your-worksheet-here-}</em></strong>
 
-	     <strong>Step 2</strong>
-		Click the compare reports button. 
-		The tool will walk through every page of your report. 
-		The output of its analysis should appear at the bottom of the screen. 
-	
-	     <strong>Note:</strong>
-		At this time, the tester does not support stories or dashboards that have hidden sheets.
-		If you would like to test a dashboard, please unhide any sheets on your dashboards for this service to work properly.
+<strong>Step 2</strong>
+Click the compare reports button. 
+The tool will walk through every page of your report. 
+The output of its analysis should appear at the bottom of the screen. 
+
+<strong>Note:</strong>
+At this time, the tester does not support stories or dashboards that have hidden sheets.
+To test a dashboard, unhide any sheets on your dashboard before publishing.
 
           </pre>
                 <div class="clear"></div>
             </div>
             <hr />
-            <div class="clear"></div>
         </div>
 
         <!--input section-->
         <div class="is-flex is-flex-direction-column is-align-items-center">
+		<div class="has-text-danger is-hidden is-center" id="lostWorkbooks">
+      "Unable to locate workbook URLS.<br> Please check the How-To for the correct formatting.";
+		</div>
             <div class="clear"></div>
             <input class="input" type="text" placeholder="URL to report in development/QA environment:"
                 id="input" type="text" />

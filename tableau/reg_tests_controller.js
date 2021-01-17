@@ -12,29 +12,51 @@ const inputNode2 = document.getElementById("input2");
 const buttonNode = document.getElementById("button");
 const howToButtonNode = document.getElementById("howToButton");
 const howToSection = document.getElementById("howToText");
+const lostWBs = document.getElementById("lostWorkbooks");
 var testflag = 0;
 var vizlistb = [];
 
 async function runTests(url) {
-  var urllist = [
-    ["https://public.tableau.com/views/SuperstorePROD_Test/Customers", "v2"],
-    ["https://public.tableau.com/views/SuperstoreQA_Test/Customers", "v1"],
-  ];
+  //Running the demo if the user doesn't enter anything
+  var urllist =
+    url[0].length == 0 && url[1].length == 0
+      ? [
+          [
+            "https://public.tableau.com/views/SuperstorePROD_Test/Customers",
+            "v2",
+          ],
+          [
+            "https://public.tableau.com/views/SuperstoreQA_Test/Customers",
+            "v1",
+          ],
+        ]
+      : [
+          [url[1], "v2"],
+          [url[0], "v1"],
+        ];
 
+  //clearing any visualizations/error messages from last time the script was ran
+  lostWBs.classList.add("is-hidden");
   if (vizlistb) {
-    console.log(vizlistb);
-    console.log("clearing vizzes");
     for (var viz of vizlistb) {
       viz.dispose();
     }
   }
 
   buttonNode.classList.add("is-loading");
-  let vizlist = await Promise.all(
-    urllist.map(async (url_div) => {
-      return await initialize_function(url_div[0], url_div[1]);
-    })
-  );
+
+  let vizlist;
+  try {
+    vizlist = await Promise.all(
+      urllist.map(async (url_div) => {
+        return await initialize_function(url_div[0], url_div[1]);
+      })
+    );
+  } catch (err) {
+    lostWBs.classList.remove("is-hidden");
+    buttonNode.classList.remove("is-loading");
+    throw err;
+  }
 
   document.getElementById(
     "reportName"
@@ -57,7 +79,6 @@ async function runTests(url) {
   return vizlist;
 }
 
-//TODO: If applicable, clear the current viz and run the new viz
 buttonNode.addEventListener("click", async () => {
   const inputValue = [inputNode.value];
   inputValue.push(inputNode2.value);
