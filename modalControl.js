@@ -1,13 +1,22 @@
 const cardmodal = document.getElementById("cardModal");
-const modalButton = document.getElementById("modalButton");
+const modalBackground = document.querySelector(".modal-background");
+const modalClose = document.querySelector("#modal-delete");
 
-modalButton.addEventListener("click", () => {
-  console.log("hi");
+modalClose.addEventListener("click", () => {
+  toggleModal();
+});
+
+modalBackground.addEventListener("click", () => {
   toggleModal();
 });
 
 function toggleModal() {
   cardmodal.classList.contains("is-active")
-    ? card.classList.remove("is-active")
+    ? cardmodal.classList.remove("is-active")
     : cardmodal.classList.add("is-active");
+}
+
+function populateModal(modaldata) {
+  console.log(modaldata);
+  toggleModal();
 }

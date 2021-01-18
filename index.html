@@ -49,14 +49,11 @@
 			</div>
 		</nav>
 		
-                    <a id="modalButton" class="button is-danger is-outlined ">
-			    toggle
-                    </a>
 
 		<!--Home Section-->
-		<section class="section" id="home-section" style="padding-top: 12px;">
+		<section class="section pt-3 " id="home-section">
 			<div class="container">
-				<h3 class="title has-text-centered is-3" style="margin-bottom: 48px;">Posts
+				<h3 class="title has-text-centered is-3 mb-7">Posts
 				<div class="clear"></div>
 				<div class="buttons has-addons is-right">
 					<button id="Project_button" class="button is-success is-selected is-small">Projects</button>
@@ -72,7 +69,7 @@
 									{{card.cardTitle}}
 								</p>
 							</header>
-							<a class="card-image has-text-centered px-3" :href=`${card.imageLink}` id="cardImage">
+							<a class="card-image has-text-centered px-3" v-on:click="populateModal(card.imageLink)" id="cardImage">
 								<img :src="card.cardImage" class="logo" alt="searxlogo">
 								<div class="tags has-addons is-justify-content-flex-end pb-2">
 									
@@ -81,8 +78,7 @@
 								</div>
 							</a>
 							<hr/>
-							<div class="card-content has-text-centered">
-								<p class=" is-size-7-mobile">{{card.cardText}}</p>
+							<div class="card-content has-text-centered is-size-7-mobile">{{card.cardText}}
 							</div>
 							<footer class="card-footer">
 								<p class="card-footer-item">
@@ -99,7 +95,7 @@
 		<!--about-section-->
 		<section class="section hidden" id="about-section" style="padding-top: 12px;">
 			<div class="container">
-				<h3 class="title has-text-centered is-3" style="margin-bottom:48px">About</h3>
+				<h3 class="title has-text-centered is-3 mb-6">About</h3>
 			</div>
 			<div class="container ">
 			<p class="title is-4 is-spaced">Who am I?</p>
@@ -152,12 +148,13 @@
 			</div>
 		</section>
 
+		<!--modal-section-->
 		<div class="modal" id="cardModal">
 		  <div class="modal-background"></div>
 		  <div class="modal-card">
 		    <header class="modal-card-head">
 		      <p class="modal-card-title">Modal title</p>
-		      <button class="delete" aria-label="close"></button>
+		      <button class="delete" id="modal-delete" aria-label="close"></button>
 		    </header>
 		    <section class="modal-card-body">
 		    </section>
@@ -172,20 +169,20 @@
 		<!--footer-section-->
 		<footer class="footer" id="site-footer">
 			<div class="container">
-				<div class="columns pb-1">
-					<div class="column has-text-right has-text-right-tablet pr-0 pb-1">
-						<div class="buttons is-right pb=1" id="button-list">
-							<a class="button is-small is-text" href="https://github.com/dr1793" id="icon-button">
+				<div class="columns ">
+					<div class="column has-text-right has-text-right-tablet pr-0 pb-2 pt-0">
+						<div class="buttons is-right pt-1 pb-0" id="button-list">
+							<a class="button is-small is-text mb-0" href="https://github.com/dr1793" id="icon-button">
 								<img src="images/icons/github.svg" height="20px" width="20px" id="icon-button">
 							</a>
-							<a class="button is-small is-text" href="mailto:delrameau@gmail.com" id="icon-button">
+							<a class="button is-small is-text mb-0" href="mailto:delrameau@gmail.com" id="icon-button">
 								<img src="images/icons/gmail.svg" height="20px" width="20px" id="icon-button">
 							</a>
-							<a class="button is-small is-text" href="https://www.linkedin.com/in/david-rameau-518118101/" id="icon-button">
+							<a class="button is-small is-text mb-0" href="https://www.linkedin.com/in/david-rameau-518118101/" id="icon-button">
 								<img src="images/icons/linkedin.svg" height="20px" width="20px" id="icon-button">
 							</a>
 						</div>
-						<div class=" has-text-right pr-3" id:"copyright">
+						<div class=" has-text-right is-hidden-mobile pr-3" id:"copyright">
 							<p class="subtitle is-7 has-text-grey">© David Rameau, 2021</p>
 						</div>
 					</div>
