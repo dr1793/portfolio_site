@@ -21,8 +21,11 @@
                     Tableau Report Comparison Tool
                 </h3>
                 <div class="section is-flex has-text-left pt-1">
-                    <a href="../#" id="returnButton" class="button is-danger is-outlined">
+                    <a href="../#" id="returnButton" class="button is-danger is-outlined is-hidden-mobile">
                         Return to site home
+                    </a>
+                    <a href="../#" id="returnButton" class="button is-danger is-outlined is-hidden-tablet">
+			    <
                     </a>
                 </div>
             </div>
@@ -108,7 +111,7 @@ To test a dashboard, unhide any sheets on your dashboard before publishing.
                     <details id="resultsTableRow" class="mb-1" v-for="(row, index) in tabRows" v-bind:class="[row.contentflag ? 'has-background-danger' : 'has-background-success']" :v-bind:key="row.header" v-bind:contentflag="row.contentflag">
                             <summary>{{row.header}}</summary>
 			    <div class="has-background-white">
-				<div v-html="row.content">{{row.content}}</div>
+				<div v-html=row.content></div>
 				</div>
                     </details>
                 </div>

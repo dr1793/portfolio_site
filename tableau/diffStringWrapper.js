@@ -37,11 +37,17 @@ export function diffStringWrapper(string) {
         returnString = returnString.concat(openHTMLKeys[openHTML.pop()]);
       }
 
-      output = output.concat(count, ")  ... ", returnString, "...<br><br>");
+      output = output.concat(
+        "<br>",
+        count,
+        ")  ... ",
+        returnString,
+        "...<br><br>"
+      );
       count++;
       if (count > 30) {
-        output = output.concat(
-          "<strong>More differences were found, but the maximum allowed on this page is 30.</strong>"
+        output = `<br><strong>More differences were found, but the maximum allowed on this page is 30.<br> Differences shown may be caused by a difference not displayed </strong> <br> <br>`.concat(
+          output
         );
         break;
       }
@@ -53,6 +59,7 @@ export function diffStringWrapper(string) {
   return output;
 }
 
+//Test
 //console.log(
 //  diffStringWrapper(
 //    "<del style='background: #ebffe0'>fkdiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiijeifajwoeifjwaofjeifoweifjwi</del> <del style='background: #ebffe0'>fkd</del><ins> fdkjskeiinnkjfdkwjlkeeenfkwenlqkwnfqll"

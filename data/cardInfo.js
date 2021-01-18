@@ -24,7 +24,7 @@ export const cardInfo = [
     readytext: "Try it out!",
     tagType: "tag is-success",
     tagText: "Project",
-    postDate: "~2021",
+    postDate: "02-01-2021",
   },
 
   {

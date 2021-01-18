@@ -9,7 +9,6 @@
 		<script src="node_modules/vue/dist/vue.min.js"></script>
 		<script src="./submitAbout.js"></script>
 		<script type="module" src="index.js"></script>
-		<script src="./cardFilter.js"></script>
 		<script src="https://www.google.com/recaptcha/api.js"></script>
 	</head>
 
@@ -50,6 +49,9 @@
 			</div>
 		</nav>
 		
+                    <a id="modalButton" class="button is-danger is-outlined ">
+			    toggle
+                    </a>
 
 		<!--Home Section-->
 		<section class="section" id="home-section" style="padding-top: 12px;">
@@ -106,7 +108,7 @@
 			<br><p class="title is-4 is-spaced">What is this site?</p>
 			<p class="subtitle is-5">•	Part portfolio and part blog, this site will host whatever I’m working at the moment and/or would like to share with the world. This site is hosted on Digital Ocean, and it runs on Vue.js and Bulma CSS; api.radeleau.dev is powered by Flask.</p>
 			<br><p class="title is-4 is-spaced">What's the deal with the crab?</p>
-			<p class="subtitle is-5"> •	Ask me about it in person below! </p>
+			<p class="subtitle is-5"> •	Coming Soon! Ask me about it in person below! </p>
 			<hr>
 			<div style="margin: 10%;">
 				<br><p class="title is-4 is-spaced">Send me a message:</p> 
@@ -150,6 +152,23 @@
 			</div>
 		</section>
 
+		<div class="modal" id="cardModal">
+		  <div class="modal-background"></div>
+		  <div class="modal-card">
+		    <header class="modal-card-head">
+		      <p class="modal-card-title">Modal title</p>
+		      <button class="delete" aria-label="close"></button>
+		    </header>
+		    <section class="modal-card-body">
+		    </section>
+		    <footer class="modal-card-foot">
+		      <button class="button is-success">Save changes</button>
+		      <button class="button">Cancel</button>
+		    </footer>
+		  </div>
+		</div>
+
+		    
 		<!--footer-section-->
 		<footer class="footer" id="site-footer">
 			<div class="container">
@@ -175,6 +194,7 @@
 		</footer>
 		<!--<script type= "module" src="/js_features/drag.js"></script>-->
 		<script type="module" src="myvue.js"></script>
+		<script src="./modalControl.js"></script>
 	</body>
 </html>
 
