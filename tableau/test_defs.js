@@ -113,10 +113,13 @@ export async function Test_ValidateVisibleDataAsync(
           "Scroll down the page to see the difference in data between QA and PROD."
         );
 
+        var dmp = new diff_match_patch();
         workbookRows.pushTab({
           header: `${sheetName}`,
           contentflag: 1,
-          content: `${JSON.stringify(diffStringWrapper(diffString(qa, prod)))}`,
+          content: `${JSON.stringify(
+            diffStringWrapper(dmp.diff_prettyHtml(dmp.diff_main(qa, prod)))
+          )}`,
           //content: "hi",
         });
 

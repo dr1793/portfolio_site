@@ -45,8 +45,8 @@ export function diffStringWrapper(string) {
         "...<br><br>"
       );
       count++;
-      if (count > 30) {
-        output = `<br><strong>More differences were found, but the maximum allowed on this page is 30.<br> Differences shown may be caused by a difference not displayed </strong> <br> <br>`.concat(
+      if (count > 15) {
+        output = `<br><strong>More differences were found, but the maximum allowed on this page is 15.<br> Differences shown may be caused by a difference not displayed </strong> <br> <br>`.concat(
           output
         );
         break;

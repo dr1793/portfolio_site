@@ -1,33 +1,35 @@
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>David Rameau's Blog</title>
-		<link rel="stylesheet" href="css/mybulmastyles.css">
-		<link href="styles.css" rel="stylesheet">
-		<link rel="icon" href="images/sad copy 2.png">
-		<script src="node_modules/vue/dist/vue.min.js"></script>
-		<script src="./submitAbout.js"></script>
-		<script type="module" src="index.js"></script>
-		<script src="https://www.google.com/recaptcha/api.js"></script>
-	</head>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>David Rameau's Blog</title>
+	<link rel="stylesheet" href="css/mybulmastyles.css">
+	<link href="styles.css" rel="stylesheet">
+	<link rel="icon" href="images/sad copy 2.png">
+	<script src="node_modules/vue/dist/vue.min.js"></script>
+	<script src="./submitAbout.js"></script>
+	<script type="module" src="index.js"></script>
+	<script src="https://www.google.com/recaptcha/api.js"></script>
+</head>
 
 
 
-	<body class="has-navbar-fixed-top is-fullheight" id="body">
-		<div class="section" id="main-section">
-		
+<body class="has-navbar-fixed-top is-fullheight" id="body">
+	<div class="section" id="main-section">
+
 		<!--navbar-->
-		<nav class="navbar has-shadow is-transparent is-fixed-top" role="navigation" aria-label="main navigation" id="site-navbar">
+		<nav class="navbar has-shadow is-transparent is-fixed-top" role="navigation" aria-label="main navigation"
+			id="site-navbar">
 			<div class="container">
 				<div class="navbar-brand">
 					<a class="navbar-item" href="#">
-						<div id ="cave"></div>
-						<div id ="cave2"></div>
+						<div id="cave"></div>
+						<div id="cave2"></div>
 						<img src="images/krab.png" alt="Logo" id="krab" href=".">
 					</a>
-					<a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" id="burger" 
-						    data-target="navbarMenu">
+					<a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" id="burger"
+						data-target="navbarMenu">
 						<span aria-hidden="true"></span>
 						<span aria-hidden="true"></span>
 						<span aria-hidden="true"></span>
@@ -38,57 +40,60 @@
 						<a class="navbar-item" style="text-align:center;" id="home">
 							Home
 						</a>
-						<a class="navbar-item has-text-link" style="text-align:center;" id= "about">
+						<a class="navbar-item has-text-link" style="text-align:center;" id="about">
 							About
 						</a>
-						<a class="navbar-item has-text-link pr-1" style="text-align:center;" id="resume" >
+						<a class="navbar-item has-text-link pr-1" style="text-align:center;" id="resume">
 							Resume
 						</a>
 					</div>
 				</div>
 			</div>
 		</nav>
-		
+
 
 		<!--Home Section-->
 		<section class="section pt-3 " id="home-section">
 			<div class="container">
 				<h3 class="title has-text-centered is-3 mb-7">Posts
-				<div class="clear"></div>
-				<div class="buttons has-addons is-right">
-					<button id="Project_button" class="button is-success is-selected is-small">Projects</button>
-					<button id="Blog_button" class="button is-info is-selected is-small" >Blogging</button>
-				</div>
+					<div class="clear"></div>
+					<div class="buttons has-addons is-right">
+						<button id="Project_button" class="button is-success is-selected is-small">Projects</button>
+						<button id="Blog_button" class="button is-info is-selected is-small">Blogging</button>
+					</div>
 				</h3>
 				<div id="projectCards">
-				<div class="row columns is-multiline">
-					<div class="column is-4-tablet is-3-desktop" v-for="(card, index) in shownCards" :key="card.cardTitle">
-						<div class="card" id="card-d">
-							<header class="card-header" id="card-header">
-								<p class="card-header-title">  
-									{{card.cardTitle}}
-								</p>
-							</header>
-							<a class="card-image has-text-centered px-3" v-on:click="populateModal(card.imageLink)" id="cardImage">
-								<img :src="card.cardImage" class="logo" alt="searxlogo">
-								<div class="tags has-addons is-justify-content-flex-end pb-2">
-									
-									<span :class="card.tagType">{{card.tagText}}</span>
-									<span v-if="!(card.readytext === 'Coming Soon!')"class="tag">{{card.postDate}}</span>
+					<div class="row columns is-multiline">
+						<div class="column is-4-tablet is-3-desktop" v-for="(card, index) in shownCards"
+							:key="card.cardTitle">
+							<div class="card" id="card-d">
+								<header class="card-header" id="card-header">
+									<p class="card-header-title">
+										{{card.cardTitle}}
+									</p>
+								</header>
+								<a class="card-image has-text-centered px-3" v-on:click="populateModal(card.imageLink)"
+									id="cardImage">
+									<img :src="card.cardImage" class="logo" alt="searxlogo">
+									<div class="tags has-addons is-justify-content-flex-end pb-2">
+
+										<span :class="card.tagType">{{card.tagText}}</span>
+										<span v-if="!(card.readytext === 'Coming Soon!')"
+											class="tag">{{card.postDate}}</span>
+									</div>
+								</a>
+								<hr />
+								<div class="card-content has-text-centered is-size-7-mobile">{{card.cardText}}
 								</div>
-							</a>
-							<hr/>
-							<div class="card-content has-text-centered is-size-7-mobile">{{card.cardText}}
+								<footer class="card-footer">
+									<p class="card-footer-item">
+										<a :href=`${card.readylink}` :class="card.readybutton">{{card.readytext}}</a>
+									</p>
+								</footer>
 							</div>
-							<footer class="card-footer">
-								<p class="card-footer-item">
-								<a :href=`${card.readylink}` :class="card.readybutton">{{card.readytext}}</a>
-								</p>
-							</footer>
 						</div>
 					</div>
 				</div>
-			</div>
 		</section>
 
 
@@ -98,42 +103,53 @@
 				<h3 class="title has-text-centered is-3 mb-6">About</h3>
 			</div>
 			<div class="container ">
-			<p class="title is-4 is-spaced">Who am I?</p>
-			<p class="subtitle is-5">•	I’m David Rameau, a Data and Analytics professional based in NYC. I'm currently an associate consultant in Slalom Consulting’s D&A practice.</p>
-			<p class="subtitle is-5">•	At Slalom, I work towards bridging the gap between the worlds of Data & Analytics and Web, Software, and Application development.</p>
-			<br><p class="title is-4 is-spaced">What is this site?</p>
-			<p class="subtitle is-5">•	Part portfolio and part blog, this site will host whatever I’m working at the moment and/or would like to share with the world. This site is hosted on Digital Ocean, and it runs on Vue.js and Bulma CSS; api.radeleau.dev is powered by Flask.</p>
-			<br><p class="title is-4 is-spaced">What's the deal with the crab?</p>
-			<p class="subtitle is-5"> •	Coming Soon! Ask me about it in person below! </p>
-			<hr>
-			<div style="margin: 10%;">
-				<br><p class="title is-4 is-spaced">Send me a message:</p> 
-				<div class=""style="margin: 5%;">
-					<div class="is-flex is-flex-direction-row is-justify-content-space-between is-align-items-center">
-						<input class="input mr-3" type="text" id="Name" placeholder="Name" value="">
-						<input class="input ml-3" type="email" id="Email" placeholder="Email" value="">
+				<p class="title is-4 is-spaced">Who am I?</p>
+				<p class="subtitle is-5">• I’m David Rameau, a Data and Analytics professional based in NYC. I'm
+					currently an associate consultant in Slalom Consulting’s D&A practice.</p>
+				<p class="subtitle is-5">• At Slalom, I work towards bridging the gap between the worlds of Data &
+					Analytics and Web, Software, and Application development.</p>
+				<br>
+				<p class="title is-4 is-spaced">What is this site?</p>
+				<p class="subtitle is-5">• Part portfolio and part blog, this site will host whatever I’m working at the
+					moment and/or would like to share with the world. This site is hosted on Digital Ocean, and it runs
+					on Vue.js and Bulma CSS; api.radeleau.dev is powered by Flask.</p>
+				<br>
+				<p class="title is-4 is-spaced">What's the deal with the crab?</p>
+				<p class="subtitle is-5"> • Coming Soon! Ask me about it in person below! </p>
+				<hr>
+				<div style="margin: 10%;">
+					<br>
+					<p class="title is-4 is-spaced">Send me a message:</p>
+					<div class="" style="margin: 5%;">
+						<div
+							class="is-flex is-flex-direction-row is-justify-content-space-between is-align-items-center">
+							<input class="input mr-3" type="text" id="Name" placeholder="Name" value="">
+							<input class="input ml-3" type="email" id="Email" placeholder="Email" value="">
+						</div>
+						<div class="clear"></div>
+						<input class="input" type="text" id="Subject" placeholder="Subject" value="">
+						<div class="clear"></div>
+						<textarea class="textarea" type="text" id="Message" placeholder="Message"></textarea>
+						<div class="is-flex is-flex-direction-column is-align-items-center"
+							style="background-color: transparent;">
+							<div class="clear"></div>
+							<h6 class="is-title-6 has-text-danger has-text-centered" id="submissionErrorMessage"></h6>
+							<div class="clear"></div>
+							<div class="g-recaptcha" data-sitekey="6LfcJh4aAAAAAM1sI9Z2jj2WXgjtHbLRGzWMCdzQ"
+								id="recaptch"></div>
+							<div class="clear"></div>
+							<button onclick="submitMessageAbout()" id="submitButton" class="button is-dark">
+								Submit</button>
+						</div>
 					</div>
-					<div class="clear"></div>
-					<input class="input" type="text" id="Subject" placeholder="Subject" value="">
-					<div class="clear"></div>
-					<textarea class="textarea" type="text" id="Message" placeholder="Message"></textarea>
-					<div class="is-flex is-flex-direction-column is-align-items-center" style="background-color: transparent;">
-						<div class="clear"></div>
-						<h6 class="is-title-6 has-text-danger has-text-centered" id="submissionErrorMessage"></h6>
-						<div class="clear"></div>
-						<div class="g-recaptcha" data-sitekey="6LfcJh4aAAAAAM1sI9Z2jj2WXgjtHbLRGzWMCdzQ" id="recaptch"></div>
-						<div class="clear"></div>
-						<button onclick="submitMessageAbout()" id="submitButton" class="button is-dark"> Submit</button>
-					</div> 
 				</div>
-			</div>
-			<hr>
-			<div class="clear"></div>
-			<div class="clear"></div>
-			<div class="clear"></div>
-			<div class="clear"></div>
-			<div class="clear"></div>
-			<div class="clear"></div>
+				<hr>
+				<div class="clear"></div>
+				<div class="clear"></div>
+				<div class="clear"></div>
+				<div class="clear"></div>
+				<div class="clear"></div>
+				<div class="clear"></div>
 		</section>
 
 
@@ -141,31 +157,32 @@
 		<section class="section hidden" id="resume-section">
 			<div class="is-flex is-flex-direction-column is-align-items-center" style="background-color: transparent;">
 				<a href="https://radeleau.dev" class="button is-dark"> Press to refresh the embed</a>
-			</div> 
+			</div>
 			<div class="clear"></div>
-			<div class="is-flex is-flex-direction-column is-align-items-center" >
-				<embed src="resume/Rameau Resume.pdf" type="application/pdf" width="80%" style="height: calc(80vw * 1.25); max-height:1150px; max-width: 880px;"/>
+			<div class="is-flex is-flex-direction-column is-align-items-center">
+				<embed src="resume/Rameau Resume.pdf" type="application/pdf" width="80%"
+					style="height: calc(80vw * 1.25); max-height:1150px; max-width: 880px;" />
 			</div>
 		</section>
 
 		<!--modal-section-->
 		<div class="modal" id="cardModal">
-		  <div class="modal-background"></div>
-		  <div class="modal-card">
-		    <header class="modal-card-head">
-		      <p class="modal-card-title">Modal title</p>
-		      <button class="delete" id="modal-delete" aria-label="close"></button>
-		    </header>
-		    <section class="modal-card-body">
-		    </section>
-		    <footer class="modal-card-foot">
-		      <button class="button is-success">Save changes</button>
-		      <button class="button">Cancel</button>
-		    </footer>
-		  </div>
+			<div class="modal-background"></div>
+			<div class="modal-card">
+				<header class="modal-card-head">
+					<p class="modal-card-title">Modal title</p>
+					<button class="delete" id="modal-delete" aria-label="close"></button>
+				</header>
+				<section class="modal-card-body">
+				</section>
+				<footer class="modal-card-foot">
+					<button class="button is-success">Save changes</button>
+					<button class="button">Cancel</button>
+				</footer>
+			</div>
 		</div>
 
-		    
+
 		<!--footer-section-->
 		<footer class="footer" id="site-footer">
 			<div class="container">
@@ -178,7 +195,8 @@
 							<a class="button is-small is-text mb-0" href="mailto:delrameau@gmail.com" id="icon-button">
 								<img src="images/icons/gmail.svg" height="20px" width="20px" id="icon-button">
 							</a>
-							<a class="button is-small is-text mb-0" href="https://www.linkedin.com/in/david-rameau-518118101/" id="icon-button">
+							<a class="button is-small is-text mb-0"
+								href="https://www.linkedin.com/in/david-rameau-518118101/" id="icon-button">
 								<img src="images/icons/linkedin.svg" height="20px" width="20px" id="icon-button">
 							</a>
 						</div>
@@ -189,9 +207,10 @@
 				</div>
 			</div>
 		</footer>
+
+
 		<!--<script type= "module" src="/js_features/drag.js"></script>-->
 		<script type="module" src="myvue.js"></script>
 		<script src="./modalControl.js"></script>
-	</body>
+</body>
 </html>
-
