@@ -1,7 +1,11 @@
 import { workbookRows } from "./tablevue.js";
 import { diffStringWrapper } from "./diffStringWrapper.js";
 
-export async function Test_DashboardObjects(qa_dashboard, prod_dashboard) {
+export async function Test_DashboardObjects(
+  qa_dashboard,
+  prod_dashboard,
+  dashboardName
+) {
   let qa_objects = qa_dashboard.getObjects();
   let prod_objects = prod_dashboard.getObjects();
   let objectsNotToTest = ["worksheet"];
@@ -24,6 +28,54 @@ export async function Test_DashboardObjects(qa_dashboard, prod_dashboard) {
     }
   }
 }
+async function compareSummaryData(
+  worksheet_prod,
+  worksheet_qa,
+  sheetName,
+  parentName = ""
+) {
+  var data_prod = await worksheet_prod.getSummaryDataAsync();
+  var data_qa = await worksheet_qa.getSummaryDataAsync();
+
+  if (parentName) {
+    parentName = parentName.concat(" - ");
+  }
+
+  if (JSON.stringify(data_prod) === JSON.stringify(data_qa)) {
+    console.log(
+      `Pass. Visible data on "${parentName}${sheetName}" is the same between QA and PROD.`
+    );
+    workbookRows.pushTab({
+      header: `${parentName}${sheetName}`,
+      contentflag: 0,
+      content: "  ",
+    });
+  } else {
+    console.log(
+      `Fail. Visible data on "${parentName}${sheetName}" tab is not the same between QA and PROD.`
+    );
+    // TO-DO diff.
+    var prod = JSON.stringify(data_prod);
+    var qa = JSON.stringify(data_qa);
+    console.log(
+      "Scroll down the page to see the difference in data between QA and PROD."
+    );
+
+    var dmp = new diff_match_patch();
+    workbookRows.pushTab({
+      header: `${parentName}${sheetName}`,
+      contentflag: 1,
+      content: `${JSON.stringify(
+        diffStringWrapper(dmp.diff_prettyHtml(dmp.diff_main(qa, prod)))
+      )}`,
+      //content: "hi",
+    });
+
+    console.log(
+      `Fail. Visible data on "${sheetName}" tab is not the same between QA and PROD.`
+    );
+  }
+}
 
 export async function Test_ValidateVisibleDataAsync(
   prod_viz,
@@ -33,6 +85,9 @@ export async function Test_ValidateVisibleDataAsync(
   console.log(
     "Validating that the data is unchanged between sheets that should be the same in QA and in PROD."
   );
+  document.getElementById("diffexplanation").classList.remove("is-hidden");
+  document.getElementById("diffexplanation").innerHTML =
+    "Worksheets/Tabs in green passed the comparison and are the same between QA and PROD; tabs in red did not. <br> You can expand the red tabs for a view of the data that is changed.";
 
   //getting the list of published sheets. If it's a dashboard, the sheets were passed as an argument of the function
   var toBePublished =
@@ -47,98 +102,37 @@ export async function Test_ValidateVisibleDataAsync(
   workbookRows.clearTab();
   //Main loop for comparison
   for (const sheet of toBePublished) {
-    try {
-      var sheetName = sheet.getName();
+    var sheetName = sheet.getName();
 
-      if (sheet.getSheetType() == "dashboard") {
-        //Add the list of sheets in the dashboard to the list, after the dashboard list item
-        //then skip processing the dashboard
-        var dashboardName = sheet["$0"]["name"];
+    if (sheet.getSheetType() == "dashboard") {
+      //Add the list of sheets in the dashboard to the list, after the dashboard list item
+      //then skip processing the dashboard
+      var dashboardName = sheet["$0"]["name"];
 
-        await qa_viz.getWorkbook().activateSheetAsync(dashboardName);
-        await prod_viz.getWorkbook().activateSheetAsync(dashboardName);
+      await prod_viz.getWorkbook().activateSheetAsync(dashboardName);
+      await qa_viz.getWorkbook().activateSheetAsync(dashboardName);
 
-        let dashboard = qa_viz.getWorkbook().getActiveSheet();
+      var qa_dashboard = qa_viz.getWorkbook().getActiveSheet();
+      var prod_dashboard = prod_viz.getWorkbook().getActiveSheet();
 
-        while (dashboard.getName() != dashboardName) {
-          await qa_viz.getWorkbook().activateSheetAsync(dashboardName);
-          await prod_viz.getWorkbook().activateSheetAsync(dashboardName);
-          dashboard = qa_viz.getWorkbook().getActiveSheet();
-        }
-        await Test_DashboardObjects(
-          dashboard,
-          prod_viz.getWorkbook().getActiveSheet()
-        );
-        //call itself again to test sheets on a dashboard
+      await Test_DashboardObjects(qa_dashboard, prod_dashboard, dashboardName);
 
-        await Test_ValidateVisibleDataAsync(
-          prod_viz,
-          qa_viz,
-          dashboard.getWorksheets()
-        );
-        continue;
-      } else {
-        await prod_viz.getWorkbook().activateSheetAsync(sheetName);
-        await qa_viz.getWorkbook().activateSheetAsync(sheetName);
-        var worksheet_prod = prod_viz.getWorkbook().getActiveSheet();
-        var worksheet_qa = qa_viz.getWorkbook().getActiveSheet();
-      }
-      try {
-        var data_prod = await worksheet_prod.getSummaryDataAsync();
-        var data_qa = await worksheet_qa.getSummaryDataAsync();
-      } catch (err) {
-        console.log(err);
-        console.log(worksheet_qa);
-        console.log(sheet);
-        var data_prod = await sheet.getSummaryDataAsync();
-        var data_qa = await sheet.getSummaryDataAsync();
-      }
-      document.getElementById("diffexplanation").classList.remove("is-hidden");
-      document.getElementById("diffexplanation").innerHTML =
-        "Worksheets/Tabs in green passed the comparison and are the same between QA and PROD; tabs in red did not. <br> You can expand the red tabs for a view of the data that is changed.";
-
-      if (JSON.stringify(data_prod) === JSON.stringify(data_qa)) {
-        console.log(
-          `Pass. Visible data on "${sheetName}" is the same between QA and PROD.`
-        );
-        workbookRows.pushTab({
-          header: `${sheetName}`,
-          contentflag: 0,
-          content: "  ",
-        });
-      } else {
-        console.log(
-          `Fail. Visible data on "${sheetName}" tab is not the same between QA and PROD.`
-        );
-        // TO-DO diff.
-        var prod = JSON.stringify(data_prod);
-        var qa = JSON.stringify(data_qa);
-        console.log(
-          "Scroll down the page to see the difference in data between QA and PROD."
-        );
-
-        var dmp = new diff_match_patch();
-        workbookRows.pushTab({
-          header: `${sheetName}`,
-          contentflag: 1,
-          content: `${JSON.stringify(
-            diffStringWrapper(dmp.diff_prettyHtml(dmp.diff_main(qa, prod)))
-          )}`,
-          //content: "hi",
-        });
-
-        console.log(
-          `Fail. Visible data on "${sheetName}" tab is not the same between QA and PROD.`
+      for (var worksheet_qa of qa_dashboard.getWorksheets()) {
+        var sheetName = worksheet_qa.getName();
+        var worksheet_prod = prod_dashboard.getWorksheets().get(sheetName);
+        await compareSummaryData(
+          worksheet_prod,
+          worksheet_qa,
+          sheetName,
+          dashboardName
         );
       }
-    } catch (err) {
-      if (err.tableauSoftwareErrorCode !== "sheetNotInWorkbook") {
-        throw err;
-      } else {
-        //add the message to the document that the sheet wasn't found
-        console.log("Sheet not found in Workbook");
-        continue;
-      }
+    } else {
+      await prod_viz.getWorkbook().activateSheetAsync(sheetName);
+      await qa_viz.getWorkbook().activateSheetAsync(sheetName);
+      var worksheet_prod = prod_viz.getWorkbook().getActiveSheet();
+      var worksheet_qa = qa_viz.getWorkbook().getActiveSheet();
+      await compareSummaryData(worksheet_prod, worksheet_qa, sheetName);
     }
   }
   await qa_viz.getWorkbook().activateSheetAsync(firstSheet_qa);
