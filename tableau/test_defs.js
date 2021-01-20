@@ -1,4 +1,3 @@
-import { diffString } from "./stringDiff.js";
 import { workbookRows } from "./tablevue.js";
 import { diffStringWrapper } from "./diffStringWrapper.js";
 
@@ -45,6 +44,7 @@ export async function Test_ValidateVisibleDataAsync(
   let firstSheet_qa = qa_viz.getWorkbook().getActiveSheet();
   let firstSheet_prod = prod_viz.getWorkbook().getActiveSheet();
 
+  workbookRows.clearTab();
   //Main loop for comparison
   for (const sheet of toBePublished) {
     try {
@@ -70,6 +70,7 @@ export async function Test_ValidateVisibleDataAsync(
           prod_viz.getWorkbook().getActiveSheet()
         );
         //call itself again to test sheets on a dashboard
+
         await Test_ValidateVisibleDataAsync(
           prod_viz,
           qa_viz,
@@ -85,7 +86,10 @@ export async function Test_ValidateVisibleDataAsync(
       try {
         var data_prod = await worksheet_prod.getSummaryDataAsync();
         var data_qa = await worksheet_qa.getSummaryDataAsync();
-      } catch {
+      } catch (err) {
+        console.log(err);
+        console.log(worksheet_qa);
+        console.log(sheet);
         var data_prod = await sheet.getSummaryDataAsync();
         var data_qa = await sheet.getSummaryDataAsync();
       }

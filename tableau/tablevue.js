@@ -14,5 +14,10 @@ export var workbookRows = new Vue({
         this.tabRows.push(data);
       }
     },
+    clearTab() {
+      while (data_tabRows.length > 0) {
+        this.tabRows.pop();
+      }
+    },
   },
 });

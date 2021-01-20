@@ -10,7 +10,7 @@
 #v1 {
   min-width: 70vw;
   max-width: 80vw;
-  max-height: 800px;
+  max-height: 1000px;
   min-height: 400px;
   flex-grow: 2;
   overflow-y: auto;
@@ -19,7 +19,7 @@
   min-width: 70vw;
   max-width: 80vw;
   min-height: 400px;
-  max-height: 800px;
+  max-height: 1000px;
   flex-grow: 2;
   overflow-y: auto;
 }

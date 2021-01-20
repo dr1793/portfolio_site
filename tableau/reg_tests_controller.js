@@ -46,24 +46,19 @@ async function runTests(url) {
   buttonNode.classList.add("is-loading");
 
   let vizlist;
-  try {
-    vizlist = await Promise.all(
-      urllist.map(async (url_div) => {
-        return await initialize_function(url_div[0], url_div[1]);
-      })
-    );
-  } catch (err) {
-    lostWBs.classList.remove("is-hidden");
-    buttonNode.classList.remove("is-loading");
-    throw err;
-  }
+  vizlist = await Promise.all(
+    urllist.map(async (url_div) => {
+      return await initialize_function(url_div[0], url_div[1]);
+    })
+  );
+  vizlistb = vizlist;
 
   document.getElementById(
     "reportName"
-  ).innerHTML += vizlist[1].getWorkbook().getName();
+  ).innerHTML = `DEV/QA Report: ${vizlist[1].getWorkbook().getName()}`;
   document.getElementById(
     "reportName2"
-  ).innerHTML += vizlist[0].getWorkbook().getName();
+  ).innerHTML = `PROD Report: ${vizlist[0].getWorkbook().getName()}`;
 
   console.log("Visualizations are fully loaded.");
   //await Test_ValidateFilterDefaults(vizlist[0])
