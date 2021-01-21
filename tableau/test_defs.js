@@ -70,10 +70,6 @@ async function compareSummaryData(
       )}`,
       //content: "hi",
     });
-
-    console.log(
-      `Fail. Visible data on "${sheetName}" tab is not the same between QA and PROD.`
-    );
   }
 }
 
