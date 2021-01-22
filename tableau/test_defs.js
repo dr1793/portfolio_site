@@ -24,6 +24,14 @@ export async function Test_DashboardObjects(
           qa_objects[i].getPosition()
         )}.`
       );
+      workbookRows.pushTab({
+        header: `In PROD, the '${prod_dashboard.getName()}' Dashboard may not have the same 
+				${qa_objects[i].getObjectType()} at ${JSON.stringify(
+          qa_objects[i].getPosition()
+        )}`,
+        contentflag: "has-background-warning",
+        content: ``,
+      });
       console.log(qa_objects[i]);
     }
   }
@@ -47,24 +55,23 @@ async function compareSummaryData(
     );
     workbookRows.pushTab({
       header: `${parentName}${sheetName}`,
-      contentflag: 0,
+      contentflag: "has-background-success",
       content: "  ",
     });
   } else {
     console.log(
       `Fail. Visible data on "${parentName}${sheetName}" tab is not the same between QA and PROD.`
     );
+
     // TO-DO diff.
     var prod = JSON.stringify(data_prod);
     var qa = JSON.stringify(data_qa);
-    console.log(
-      "Scroll down the page to see the difference in data between QA and PROD."
-    );
+    //Check all the filter values and return the difference
 
     var dmp = new diff_match_patch();
     workbookRows.pushTab({
       header: `${parentName}${sheetName}`,
-      contentflag: 1,
+      contentflag: "has-background-danger",
       content: `${JSON.stringify(
         diffStringWrapper(dmp.diff_prettyHtml(dmp.diff_main(qa, prod)))
       )}`,
@@ -73,11 +80,7 @@ async function compareSummaryData(
   }
 }
 
-export async function Test_ValidateVisibleDataAsync(
-  prod_viz,
-  qa_viz,
-  sheetlist = []
-) {
+export async function Test_ValidateVisibleDataAsync(prod_viz, qa_viz) {
   console.log(
     "Validating that the data is unchanged between sheets that should be the same in QA and in PROD."
   );
@@ -86,10 +89,15 @@ export async function Test_ValidateVisibleDataAsync(
     "Worksheets/Tabs in green passed the comparison and are the same between QA and PROD; tabs in red did not. <br> You can expand the red tabs for a view of the data that is changed.";
 
   //getting the list of published sheets. If it's a dashboard, the sheets were passed as an argument of the function
-  var toBePublished =
-    sheetlist.length == 0
-      ? qa_viz.getWorkbook().getPublishedSheetsInfo()
-      : sheetlist.slice(0);
+  var toBePublished = qa_viz.getWorkbook().getPublishedSheetsInfo();
+  var published = prod_viz
+    .getWorkbook()
+    .getPublishedSheetsInfo()
+    .map((sheet) => sheet["$0"].name);
+
+  toBePublished = toBePublished.filter((sheet) =>
+    published.includes(sheet["$0"].name)
+  );
 
   //Getting the original sheet to return to it
   let firstSheet_qa = qa_viz.getWorkbook().getActiveSheet();
@@ -105,17 +113,38 @@ export async function Test_ValidateVisibleDataAsync(
       //then skip processing the dashboard
       var dashboardName = sheet["$0"]["name"];
 
-      await prod_viz.getWorkbook().activateSheetAsync(dashboardName);
-      await qa_viz.getWorkbook().activateSheetAsync(dashboardName);
+      try {
+        await prod_viz.getWorkbook().activateSheetAsync(dashboardName);
+        await qa_viz.getWorkbook().activateSheetAsync(dashboardName);
+      } catch (err) {
+        if (err["tableauSoftwareErrorCode"] == "sheetNotInWorkbook") {
+          console.log(`Sheet ${dashboardName} is not in PROD workbook`);
+          workbookRows.pushTab({
+            header: `Sheet ${dashboardName} is not in PROD workbook`,
+            contentflag: "has-background-danger",
+            content: ``,
+          });
+          continue;
+        } else {
+          console.log(err);
+          throw err;
+        }
+      }
 
+      console.log(`Sheet: ${sheetName}`);
       var qa_dashboard = qa_viz.getWorkbook().getActiveSheet();
       var prod_dashboard = prod_viz.getWorkbook().getActiveSheet();
 
       await Test_DashboardObjects(qa_dashboard, prod_dashboard, dashboardName);
 
       for (var worksheet_qa of qa_dashboard.getWorksheets()) {
-        var sheetName = worksheet_qa.getName();
-        var worksheet_prod = prod_dashboard.getWorksheets().get(sheetName);
+        try {
+          var sheetName = worksheet_qa.getName();
+          var worksheet_prod = prod_dashboard.getWorksheets().get(sheetName);
+        } catch (err) {
+          console.log(err);
+          throw err;
+        }
         await compareSummaryData(
           worksheet_prod,
           worksheet_qa,
@@ -124,8 +153,24 @@ export async function Test_ValidateVisibleDataAsync(
         );
       }
     } else {
-      await prod_viz.getWorkbook().activateSheetAsync(sheetName);
-      await qa_viz.getWorkbook().activateSheetAsync(sheetName);
+      try {
+        await prod_viz.getWorkbook().activateSheetAsync(sheetName);
+        await qa_viz.getWorkbook().activateSheetAsync(sheetName);
+      } catch (err) {
+        if (err["tableauSoftwareErrorCode"] == "sheetNotInWorkbook") {
+          console.log(`Sheet ${sheetName} is not in PROD workbook`);
+          workbookRows.pushTab({
+            header: `Sheet ${sheetName} is not in PROD workbook`,
+            contentflag: "has-background-danger",
+            content: ``,
+          });
+          continue;
+        } else {
+          console.log(err);
+          throw err;
+        }
+      }
+      console.log(`Sheet: ${sheetName}`);
       var worksheet_prod = prod_viz.getWorkbook().getActiveSheet();
       var worksheet_qa = qa_viz.getWorkbook().getActiveSheet();
       await compareSummaryData(worksheet_prod, worksheet_qa, sheetName);

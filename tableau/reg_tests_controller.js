@@ -19,7 +19,7 @@ var vizlistb = [];
 async function runTests(url) {
   //Running the demo if the user doesn't enter anything
   var urllist =
-    url[0].length == 0 && url[1].length == 0
+    url[0].length == 0 || url[1].length == 0
       ? [
           [
             "https://public.tableau.com/views/SuperstorePROD_Test/Customers",
@@ -45,13 +45,23 @@ async function runTests(url) {
 
   buttonNode.classList.add("is-loading");
 
+  //Trying to initialize the vizualizations
+
   let vizlist;
-  vizlist = await Promise.all(
-    urllist.map(async (url_div) => {
-      return await initialize_function(url_div[0], url_div[1]);
-    })
-  );
-  vizlistb = vizlist;
+  try {
+    vizlist = await Promise.all(
+      urllist.map(async (url_div) => {
+        return await initialize_function(url_div[0], url_div[1]);
+      })
+    );
+    vizlistb = vizlist;
+  } catch (err) {
+    if (err["tableauSoftwareErrorCode"] == "invalidUrl") {
+      buttonNode.classList.remove("is-loading");
+      lostWBs.classList.remove("is-hidden");
+      throw err;
+    }
+  }
 
   document.getElementById(
     "reportName"
@@ -92,8 +102,23 @@ howToButtonNode.addEventListener("click", () => {
 });
 
 inputNode.addEventListener("input", () => {
-  buttonNode.innerHTML = "Compare these Reports";
+  if (inputNode2.value != "") {
+    buttonNode.innerHTML = "Compare these Reports";
+  }
 });
 inputNode2.addEventListener("input", () => {
-  buttonNode.innerHTML = "Compare these Reports";
+  if (inputNode2.value != "") {
+    buttonNode.innerHTML = "Compare these Reports";
+  }
+});
+
+inputNode2.addEventListener("input", () => {
+  if (inputNode2.value == "") {
+    buttonNode.innerHTML = "Run a Demo";
+  }
+});
+inputNode.addEventListener("input", () => {
+  if (inputNode.value == "") {
+    buttonNode.innerHTML = "Run a Demo";
+  }
 });

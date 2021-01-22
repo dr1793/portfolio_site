@@ -78,14 +78,14 @@ To test a dashboard, unhide any sheets on your dashboard before publishing.
 
         <!--input section-->
         <div class="is-flex is-flex-direction-column is-align-items-center">
-		<div class="has-text-danger is-hidden is-center" id="lostWorkbooks">
-      "Unable to locate workbook URLS.<br> Please check the How-To for the correct formatting.";
+		<div class="has-text-danger has-text-centered is-hidden is-center" id="lostWorkbooks">
+      Unable to locate workbook URLS.<br> Please check the How-To for the correct formatting
 		</div>
             <div class="clear"></div>
-            <input class="input" type="text" placeholder="URL to report in development/QA environment:" value="https://10ax.online.tableau.com/t/davidrdev233408/views/Superstore/Product?:showAppBanner=false&:display_count=n&:showVizHome=n&:origin=viz_share_link"
+            <input class="input" type="text" placeholder="URL to report in development/QA environment:" value=""
                 id="input" type="text" />
             <div class="clear"></div>
-            <input class="input" type="text" placeholder="URL to report in production environment:" value="https://10ax.online.tableau.com/t/davidrdev233408/views/Superstore/Product?:showAppBanner=false&:display_count=n&:showVizHome=n&:origin=viz_share_link" id="input2"
+            <input class="input" type="text" placeholder="URL to report in production environment:" value="" id="input2"
                 type="text" />
             <div class="clear"></div>
             <button class="button is-light" id="button">
@@ -107,9 +107,9 @@ To test a dashboard, unhide any sheets on your dashboard before publishing.
 
                 <!-- Results Table-->
                 <p class="is-size-5">Results</p>
-		<article class="message"><div class="message-body is-size-7 is-hidden" id="diffexplanation"></div></article>
+		<article class="message"><div class="message-body has-text-centered is-size-7 is-hidden" id="diffexplanation"></div></article>
                 <div class="box " id="workbookRows">
-                    <details id="resultsTableRow" class="mb-1" v-for="(row, index) in tabRows" v-bind:class="[row.contentflag ? 'has-background-danger' : 'has-background-success']" :v-bind:key="row.header" v-bind:contentflag="row.contentflag">
+			<details id="resultsTableRow" class="mb-1" v-for="(row, index) in tabRows" v-bind:class="row.contentflag" :v-bind:key="row.header">
                             <summary>{{row.header}}</summary>
 			    <div class="has-background-white">
 				<div v-html=row.content></div>
