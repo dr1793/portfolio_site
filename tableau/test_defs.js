@@ -19,20 +19,21 @@ export async function Test_DashboardObjects(
       !objectsNotToTest.includes(qa_objects[i].getObjectType())
     ) {
       console.log(
-        `In PROD, the '${prod_dashboard.getName()}' Dashboard may not have the same 
-				${qa_objects[i].getObjectType()} at ${JSON.stringify(
-          qa_objects[i].getPosition()
-        )}.`
+        `Detected a change in position or size for the 
+				${qa_objects[i].getObjectType()} at coordinate (${JSON.stringify(
+          qa_objects[i].getPosition().x
+        )}, ${JSON.stringify(qa_objects[i].getPosition().y)}).`
       );
       workbookRows.pushTab({
-        header: `In PROD, the '${prod_dashboard.getName()}' Dashboard may not have the same 
-				${qa_objects[i].getObjectType()} at ${JSON.stringify(
-          qa_objects[i].getPosition()
-        )}`,
+        header: `Detected a change in position or size for the 
+				"${qa_objects[
+          i
+        ].getObjectType()}" sheet on the "${dashboardName}" Dashboard at the coordinates (${JSON.stringify(
+          qa_objects[i].getPosition().x
+        )}, ${JSON.stringify(qa_objects[i].getPosition().y)}).`,
         contentflag: "has-background-warning",
         content: ``,
       });
-      console.log(qa_objects[i]);
     }
   }
 }
@@ -80,7 +81,28 @@ async function compareSummaryData(
   }
 }
 
+function getPublishedTabsDiffs(qa, prod) {
+  var qa_published = qa.filter((sheet) => !prod.includes(sheet));
+  var prod_published = prod.filter((sheet) => !qa.includes(sheet));
+
+  for (var sheet of qa_published) {
+    workbookRows.pushTab({
+      header: `Sheet "${sheet}" is published as a tab in QA but not in PROD.`,
+      contentflag: "has-background-warning",
+      content: ``,
+    });
+  }
+  for (var sheet of prod_published) {
+    workbookRows.pushTab({
+      header: `Sheet "${sheet}" is published as a tab in PROD but not in QA.`,
+      contentflag: "has-background-warning",
+      content: ``,
+    });
+  }
+}
+
 export async function Test_ValidateVisibleDataAsync(prod_viz, qa_viz) {
+  workbookRows.clearTab();
   console.log(
     "Validating that the data is unchanged between sheets that should be the same in QA and in PROD."
   );
@@ -88,22 +110,26 @@ export async function Test_ValidateVisibleDataAsync(prod_viz, qa_viz) {
   document.getElementById("diffexplanation").innerHTML =
     "Worksheets/Tabs in green passed the comparison and are the same between QA and PROD; tabs in red did not. <br> You can expand the red tabs for a view of the data that is changed.";
 
-  //getting the list of published sheets. If it's a dashboard, the sheets were passed as an argument of the function
+  //getting the list of published sheets QA and PROD.
   var toBePublished = qa_viz.getWorkbook().getPublishedSheetsInfo();
   var published = prod_viz
     .getWorkbook()
     .getPublishedSheetsInfo()
     .map((sheet) => sheet["$0"].name);
+  var qa_published = toBePublished.map((sheet) => sheet["$0"].name);
 
+  //Only test sheets that they have in common
   toBePublished = toBePublished.filter((sheet) =>
     published.includes(sheet["$0"].name)
   );
+
+  //Compare the different published sheets in QA and PROD
+  getPublishedTabsDiffs(qa_published, published);
 
   //Getting the original sheet to return to it
   let firstSheet_qa = qa_viz.getWorkbook().getActiveSheet();
   let firstSheet_prod = prod_viz.getWorkbook().getActiveSheet();
 
-  workbookRows.clearTab();
   //Main loop for comparison
   for (const sheet of toBePublished) {
     var sheetName = sheet.getName();
