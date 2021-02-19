@@ -58,7 +58,7 @@ export const cardInfo = [
     cardImage: "../images/Logo_searx_b copy.png",
     imageLink: "https://github.com/searx/searx/wiki",
     cardText:
-      "Searx is an open-source online search engine aggregator. I maintain an instance on a Virtual Private Cloud.",
+      "Searx is an open-source online search engine aggregator. I maintain an instance on a DigitalOcean VPC.",
     readybutton: "card-footer-item",
     readylink: "https://search.radeleau.dev",
     readytext: "Try it out!",
