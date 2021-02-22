@@ -199,6 +199,7 @@ export async function Test_ValidateVisibleDataAsync(prod_viz, qa_viz) {
       console.log(`Sheet: ${sheetName}`);
       var worksheet_prod = prod_viz.getWorkbook().getActiveSheet();
       var worksheet_qa = qa_viz.getWorkbook().getActiveSheet();
+      //Add function to randomize filters here.
       await compareSummaryData(worksheet_prod, worksheet_qa, sheetName);
     }
   }
