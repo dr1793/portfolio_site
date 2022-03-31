@@ -1,6 +1,6 @@
 export const cardInfo = [
   {
-    cardTitle: "Freelance SPA REACT Site",
+    cardTitle: "24hr Freelance REACT Site",
     cardImage: "../images/water.png",
     imageLink: "https://dutchesswater.com",
     cardText:
@@ -36,7 +36,7 @@ export const cardInfo = [
     readytext: "Try it out!",
     tagType: "tag is-success",
     tagText: "Project",
-    postDate: "03-10-2022",
+    postDate: "01-25-2022",
   },
 
   {
