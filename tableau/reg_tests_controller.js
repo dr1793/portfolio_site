@@ -1,9 +1,4 @@
-import { sleep, initialize_function } from "./initialize.js";
-import { diffString } from "./stringDiff.js";
-import {
-  Test_ValidateFilterDefaults,
-  Test_ValidateTabs,
-} from "./test_defs_inactive.js";
+import { initialize_function } from "./initialize.js";
 import { Test_ValidateVisibleDataAsync } from "./test_defs.js";
 
 var diff = "";
