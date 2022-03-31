@@ -72,7 +72,7 @@
 										{{card.cardTitle}}
 									</p>
 								</header>
-								<a class="card-image has-text-centered px-3" v-on:click="populateModal(card.imageLink)"
+								<a class="card-image has-text-centered px-3" :href=`${card.imageLink}`
 									id="cardImage">
 									<img :src="card.cardImage" class="logo" alt="searxlogo">
 									<div class="tags has-addons is-justify-content-flex-end pb-2">
@@ -83,7 +83,7 @@
 									</div>
 								</a>
 								<hr />
-								<div class="card-content has-text-centered is-size-7-mobile">{{card.cardText}}
+								<div class="card-content has-text-centered is-size-6 is-size-6-mobile">{{card.cardText}}
 								</div>
 								<footer class="card-footer">
 									<p class="card-footer-item">

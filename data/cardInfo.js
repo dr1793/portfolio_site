@@ -1,5 +1,18 @@
 export const cardInfo = [
   {
+    cardTitle: "Freelance SPA REACT Site",
+    cardImage: "../images/water.png",
+    imageLink: "https://dutchesswater.com",
+    cardText:
+      "Rapid build and deployment of freelance website using publically available template, REACT, and github pages.",
+    readybutton: "card-footer-item",
+    readylink: "https://dutchesswater.com",
+    readytext: "View it here!",
+    tagType: "tag is-success",
+    tagText: "Project",
+    postDate: "04-01-2022",
+  },
+  {
     cardTitle: 'The "Parties" Database',
     cardImage: "../images/party_db.png",
     imageLink: "javascript:;",
@@ -15,8 +28,7 @@ export const cardInfo = [
   {
     cardTitle: "Tableau Regression Tester",
     cardImage: "../images/tableau_js.png",
-    imageLink:
-      "https://help.tableau.com/current/api/js_api/en-us/JavaScriptAPI/js_api.htm",
+    imageLink: "/tableau/",
     cardText:
       "A light-weight webapp that uses the Tableau JS API to automate simple regression testing of reports on Tableau Server.",
     readybutton: "card-footer-item",
@@ -24,7 +36,7 @@ export const cardInfo = [
     readytext: "Try it out!",
     tagType: "tag is-success",
     tagText: "Project",
-    postDate: "02-01-2021",
+    postDate: "03-10-2022",
   },
 
   {
@@ -56,7 +68,7 @@ export const cardInfo = [
   {
     cardTitle: "Self-Hosting Searx",
     cardImage: "../images/Logo_searx_b copy.png",
-    imageLink: "https://github.com/searx/searx/wiki",
+    imageLink: "https://search.radeleau.dev",
     cardText:
       "Searx is an open-source online search engine aggregator. I maintain an instance on a DigitalOcean VPC.",
     readybutton: "card-footer-item",
