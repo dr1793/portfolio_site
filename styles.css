@@ -3,13 +3,17 @@
   animation-iteration-count: infinite;
   animation-fill-mode: forwards;
 }
-
+#projectCards {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .card {
   display: flex;
   flex-direction: column;
-  height: 100%;
   min-height: 500px;
   max-height: 850px;
+  max-width: 420px;
 }
 .card-header {
   height: 100%;
