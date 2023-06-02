@@ -86,7 +86,7 @@ export const tech = [
   { tech: "React", image: "../images/react.png" },
   { tech: "NextJS", image: "../images/nextjs.png" },
   { tech: "GatsbyJS", image: "../images/gatsbyjs.png" },
-  { tech: "Redux", image: "../images/Redux.png" },
+  { tech: "Redux", image: "../images/redux.png" },
   { tech: "Material UI", image: "../images/mui.png" },
   { tech: "GraphQL", image: "../images/gql.png" },
   { tech: "rust", image: "../images/rust.png" },
