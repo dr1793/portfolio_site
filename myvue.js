@@ -1,4 +1,4 @@
-import { cardInfo as cardsInfo } from "./data/cardInfo.js";
+import { cardInfo as cardsInfo, tech } from "./data/cardInfo.js";
 
 //add a function that filters cardsInfo.
 //Tie it to some drop down menu.
@@ -15,6 +15,13 @@ var projectCards = new Vue({
         return this.filterSet[card.tagText];
       });
     },
+  },
+});
+
+var techs = new Vue({
+  el: "#techs",
+  data: {
+    techData: tech,
   },
 });
 

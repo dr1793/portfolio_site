@@ -12,6 +12,7 @@ const resume_section = document.querySelector("#resume-section");
 const about = document.querySelector("#about");
 const about_section = document.querySelector("#about-section");
 const site_footer = document.querySelector("#site-footer");
+const about_link = document.querySelector("#about-link");
 
 function toggleCave() {
   if (navbarMenu.classList.contains("is-active")) {
@@ -65,6 +66,15 @@ function rememberPage(page) {
 }
 
 about.addEventListener("click", () => {
+  go_about();
+  if (!about_section.classList.contains("hidden")) {
+    navbarMenu.classList.toggle("is-active");
+    burgerIcon.classList.toggle("is-active");
+    toggleCave();
+  }
+});
+
+about_link.addEventListener("click", () => {
   go_about();
   if (!about_section.classList.contains("hidden")) {
     navbarMenu.classList.toggle("is-active");

@@ -23,7 +23,7 @@ export const cardInfo = [
     readytext: "Try it out!",
     tagType: "tag is-success",
     tagText: "Project",
-    postDate: "01-25-2022",
+    postDate: "01-25-2021",
   },
 
   {
@@ -78,4 +78,19 @@ export const cardInfo = [
     tagText: "Project",
     postDate: "12-27-2020",
   },
+];
+
+export const tech = [
+  { tech: "JavaScript", image: "../images/javascript.png" },
+  { tech: "TypeScript", image: "../images/typescript.png" },
+  { tech: "React", image: "../images/react.png" },
+  { tech: "NextJS", image: "../images/nextjs.png" },
+  { tech: "GatsbyJS", image: "../images/gatsbyjs.png" },
+  { tech: "Redux", image: "../images/Redux.png" },
+  { tech: "Material UI", image: "../images/mui.png" },
+  { tech: "GraphQL", image: "../images/gql.png" },
+  { tech: "rust", image: "../images/rust.png" },
+  { tech: "bash", image: "../images/bash.png" },
+  { tech: "AWS", image: "../images/aws.png" },
+  { tech: "python", image: "../images/python.png" },
 ];

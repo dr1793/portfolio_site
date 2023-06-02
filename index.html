@@ -54,6 +54,15 @@
 
 		<!--Home Section-->
 		<section class="section pt-3 " id="home-section">
+      <p class="subtitle is-5 has-text-centered">Welcome to my site!
+      </p>
+      <div class="has-text-centered">
+      There's some interesting
+      stuff I've been working on below. 
+      Check the <a id="about-link">about</a> page to learn more
+      about me!
+      </div>
+      <br/>
 			<div class="container">
 				<h3 class="title has-text-centered is-3 mb-7">Posts
 					<div class="clear"></div>
@@ -74,7 +83,7 @@
 								</header>
 								<a class="card-image has-text-centered px-3" :href=`${card.imageLink}`
 									id="cardImage">
-									<img :src="card.cardImage" class="logo" alt="searxlogo">
+									<img :src="card.cardImage" class="logo" :alt="`${card.cardTitle} image logo`">
 									<div class="tags has-addons is-justify-content-flex-end pb-2">
 
 										<span :class="card.tagType">{{card.tagText}}</span>
@@ -107,7 +116,30 @@
 				<p class="subtitle is-5">• I’m David Rameau, a Software Engineer based in NYC. I'm
 					currently a consultant in Slalom Consulting’s Technology Enablement practice.</p>
 				<p class="subtitle is-5">• At Slalom, I use my expertise in Data and Software to bridge the gap between the worlds of Data and Web, Software, and Application development.</p>
-				<br>
+				</br>
+				<p class="subtitle is-5">Here's some tech that I'm handy with:</p>
+          <div id="techs" class=" ">
+            <div class="row columns is-multiline is-mobile">
+              <div class="column is-3-mobile is-2-tablet is-2-desktop" v-for="(tech, index) in techData"
+                :key="tech.tech">
+                  <div class="card is-full-width-mobile" id="card-b">
+                      <figure class="image is-square">
+                        <img :src="tech.image" class="logo" :alt="`${tech.tech} image logo`">
+                      </figure>
+                    <footer class="card-footer is-size-6">
+                      <p class="card-footer-item is-paddingless">
+                      <b>{{tech.tech}}</b>
+                      </p>
+                    </footer>
+                  </div>
+                  <br/>
+                  <br/>
+              </div>
+            </div>
+          </div>
+        <br/>
+        <br/>
+        <br/>
 				<p class="title is-4 is-spaced">What is this site?</p>
 				<p class="subtitle is-5">• Part portfolio and part blog, this site will host whatever I’m working at the
 					moment and/or would like to share with the world. This site is hosted on Digital Ocean, and it runs
@@ -117,7 +149,6 @@
 				<p class="subtitle is-5"> • Coming Soon! Ask me about it in person below! </p>
 				<hr>
 				<div style="margin: 10%;">
-					<br>
 					<p class="title is-4 is-spaced">Send me a message:</p>
 					<div class="" style="margin: 5%;">
 						<div
