@@ -27,6 +27,20 @@ export const cardInfo = [
   },
 
   {
+    cardTitle: "Self-Hosting Searx",
+    cardImage: "../images/Logo_searx_b copy.png",
+    imageLink: "https://search.radeleau.dev",
+    cardText:
+      "Searx is an open-source search engine aggregator and query anonymizer. I host a public instance at the link below.",
+    readybutton: "card-footer-item",
+    readylink: "https://search.radeleau.dev",
+    readytext: "Try it out!",
+    tagType: "tag is-success",
+    tagText: "Project",
+    postDate: "12-27-2020",
+  },
+
+  {
     cardTitle: "What even is Blockstack?",
     cardImage: "../images/blockstack-stx-logo.png",
     imageLink: "https://www.blockstack.org/",
@@ -39,6 +53,7 @@ export const cardInfo = [
     tagText: "Blog",
     postDate: "~2021",
   },
+
   {
     cardTitle: "24hr Freelance REACT Site",
     cardImage: "../images/water.png",
@@ -65,24 +80,12 @@ export const cardInfo = [
   //   tagText: "Blog",
   //   postDate: "12-30-2020",
   // },
-  {
-    cardTitle: "Self-Hosting Searx",
-    cardImage: "../images/Logo_searx_b copy.png",
-    imageLink: "https://search.radeleau.dev",
-    cardText:
-      "Searx is an open-source search engine aggregator and query anonymizer. I host a public instance at the link below.",
-    readybutton: "card-footer-item",
-    readylink: "https://search.radeleau.dev",
-    readytext: "Try it out!",
-    tagType: "tag is-success",
-    tagText: "Project",
-    postDate: "12-27-2020",
-  },
 ];
 
 export const tech = [
   { tech: "JavaScript", image: "../images/javascript.png" },
   { tech: "TypeScript", image: "../images/typescript.png" },
+  { tech: "python", image: "../images/python.png" },
   { tech: "React", image: "../images/react.png" },
   { tech: "NextJS", image: "../images/nextjs.png" },
   { tech: "GatsbyJS", image: "../images/gatsbyjs.png" },
@@ -92,5 +95,4 @@ export const tech = [
   { tech: "rust", image: "../images/rust.png" },
   { tech: "bash", image: "../images/bash.png" },
   { tech: "AWS", image: "../images/aws.png" },
-  { tech: "python", image: "../images/python.png" },
 ];
