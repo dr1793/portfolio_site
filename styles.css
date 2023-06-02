@@ -27,10 +27,15 @@
 }
 
 #card-b .card-footer {
-  max-height: 40px;
+  height: 40px;
 }
 #card-b .image {
+  min-height: 80px;
   max-height: 350px;
+}
+
+#card-b {
+  min-width: 70px;
 }
 
 .card-content {
