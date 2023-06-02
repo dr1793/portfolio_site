@@ -9,3 +9,10 @@ $size-6: .9rem;
 $size-7: .75rem;
 
 @import "../node_modules/bulma/bulma.sass";
+
+@include mobile {
+  .buttons {
+    justify-content: center;
+  }
+}
+
