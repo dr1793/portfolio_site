@@ -1,17 +1,16 @@
 export const cardInfo = [
-  // {
-  //   cardTitle: 'The "Parties" Database',
-  //   cardImage: "../images/party_db.png",
-  //   imageLink: "javascript:;",
-  //   cardText:
-  //     'Demo ETL/warehousing of a database of "parties"! Based on the database of a popular event management software.',
-  //   readybutton: "card-footer-item has-text-grey",
-  //   readylink: "javascript:;",
-  //   readytext: "Coming Soon!",
-  //   tagType: "tag is-success",
-  //   tagText: "Project",
-  //   postDate: "~2021",
-  // },
+  {
+    cardTitle: 'Freelance Next 13 Site',
+    cardImage: "../images/black_and_white_logo_flower.png",
+    imageLink: "https://www.bedstuyclothesswap.com",
+    cardText: "I'll save you the trouble: Framer Motion doesn't work with Next 13 🥲. But, contentful and GraphQL do!",
+    readybutton: "card-footer-item",
+    readylink: "https://www.bedstuyclothesswap.com",
+    readytext: "Check it out!",
+    tagType: "tag is-success",
+    tagText: "Project",
+    postDate: "12-19-2023",
+  },
   {
     cardTitle: "Tableau Regression Tester",
     cardImage: "../images/tableau_js.png",
@@ -25,7 +24,6 @@ export const cardInfo = [
     tagText: "Project",
     postDate: "01-25-2021",
   },
-
   {
     cardTitle: "Self-Hosting Searx",
     cardImage: "../images/Logo_searx_b copy.png",
@@ -39,7 +37,6 @@ export const cardInfo = [
     tagText: "Project",
     postDate: "12-27-2020",
   },
-
   {
     cardTitle: "What even is Blockstack?",
     cardImage: "../images/blockstack-stx-logo.png",
@@ -53,7 +50,6 @@ export const cardInfo = [
     tagText: "Blog",
     postDate: "~2021",
   },
-
   {
     cardTitle: "24hr Freelance REACT Site",
     cardImage: "../images/water.png",
@@ -79,6 +75,19 @@ export const cardInfo = [
   //   tagType: "tag is-info",
   //   tagText: "Blog",
   //   postDate: "12-30-2020",
+  // },
+  // {
+  //   cardTitle: 'The "Parties" Database',
+  //   cardImage: "../images/party_db.png",
+  //   imageLink: "javascript:;",
+  //   cardText:
+  //     'Demo ETL/warehousing of a database of "parties"! Based on the database of a popular event management software.',
+  //   readybutton: "card-footer-item has-text-grey",
+  //   readylink: "javascript:;",
+  //   readytext: "Coming Soon!",
+  //   tagType: "tag is-success",
+  //   tagText: "Project",
+  //   postDate: "~2021",
   // },
 ];
 
