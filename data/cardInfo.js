@@ -3,7 +3,7 @@ export const cardInfo = [
     cardTitle: 'Freelance Next 13 Site',
     cardImage: "../images/black_and_white_logo_flower.png",
     imageLink: "https://www.bedstuyclothesswap.com",
-    cardText: "I'll save you the trouble: Framer Motion doesn't work with Next 13 🥲. But, contentful and GraphQL do!",
+    cardText: "I'll save you the trouble: Framer Motion doesn't work with Next 13 🥲. But, Contentful and GraphQL do!",
     readybutton: "card-footer-item",
     readylink: "https://www.bedstuyclothesswap.com",
     readytext: "Check it out!",
@@ -63,6 +63,7 @@ export const cardInfo = [
     tagText: "Project",
     postDate: "04-01-2021",
   },
+
   // {
   //   cardTitle: "Digital Ocean is Awesome!",
   //   cardImage: "../images/DigitalOcean_logo.png",
