@@ -96,7 +96,8 @@
 								</div>
 								<footer class="card-footer">
 									<p class="card-footer-item">
-										<a :href=`${card.readylink}` :class="card.readybutton">{{card.readytext}}</a>
+										<a v-if="card.readylink" :href=`${card.readylink}` :class="card.readybutton">{{card.readytext}}</a>
+										<span v-else :class="card.readybutton">{{card.readytext}}</span>
 									</p>
 								</footer>
 							</div>
