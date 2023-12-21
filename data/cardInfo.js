@@ -1,6 +1,6 @@
 export const cardInfo = [
   {
-    cardTitle: 'Freelance Next 13 Site',
+    cardTitle: 'Freelance - Next 13 Site',
     cardImage: "../images/black_and_white_logo_flower.png",
     imageLink: "https://www.bedstuyclothesswap.com",
     cardText: "I'll save you the trouble: Framer Motion doesn't work with Next 13 🥲. But, Contentful and GraphQL do!",
@@ -44,21 +44,21 @@ export const cardInfo = [
     cardText:
       "Crypto-currency? Development platform? In this post, I give my layperson's understanding of this emerging technology.",
     readybutton: "card-footer-item has-text-grey",
-    readylink: "javascript:;",
+    readylink: "",
     readytext: "Coming Soon!",
     tagType: "tag is-info",
     tagText: "Blog",
     postDate: "~2021",
   },
   {
-    cardTitle: "24hr Freelance REACT Site",
+    cardTitle: "24hr Freelance - REACT Site",
     cardImage: "../images/water.png",
     imageLink: "https://dutchesswater.com",
     cardText:
       "Rapid build and deployment of freelance website using publically available template, REACT, and github pages.",
-    readybutton: "card-footer-item",
-    readylink: "https://dutchesswater.com",
-    readytext: "View it here!",
+    readybutton: "card-footer-item has-text-grey",
+    readylink: "",
+    readytext: "--down rn--",
     tagType: "tag is-success",
     tagText: "Project",
     postDate: "04-01-2021",
