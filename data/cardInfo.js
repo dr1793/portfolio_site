@@ -50,19 +50,19 @@ export const cardInfo = [
     tagText: "Blog",
     postDate: "~2021",
   },
-  {
-    cardTitle: "24hr Freelance - REACT Site",
-    cardImage: "../images/water.png",
-    imageLink: "https://dutchesswater.com",
-    cardText:
-      "Rapid build and deployment of freelance website using publically available template, REACT, and github pages.",
-    readybutton: "card-footer-item has-text-grey",
-    readylink: "",
-    readytext: "--down rn--",
-    tagType: "tag is-success",
-    tagText: "Project",
-    postDate: "04-01-2021",
-  },
+  // {
+  //   cardTitle: "24hr Freelance - REACT Site",
+  //   cardImage: "../images/water.png",
+  //   imageLink: "https://dutchesswater.com",
+  //   cardText:
+  //     "Rapid build and deployment of freelance website using publically available template, REACT, and github pages.",
+  //   readybutton: "card-footer-item has-text-grey",
+  //   readylink: "",
+  //   readytext: "--down rn--",
+  //   tagType: "tag is-success",
+  //   tagText: "Project",
+  //   postDate: "04-01-2021",
+  // },
 
 
   // {
