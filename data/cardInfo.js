@@ -94,16 +94,16 @@ export const cardInfo = [
 ];
 
 export const tech = [
+  { tech: "AWS", image: "../images/aws.png" },
+  { tech: "Java", image: "../images/java-logo-1.png" },
+  { tech: "python", image: "../images/python.png" },
+  { tech: "bash", image: "../images/bash.png" },
   { tech: "JavaScript", image: "../images/javascript.png" },
   { tech: "TypeScript", image: "../images/typescript.png" },
-  { tech: "python", image: "../images/python.png" },
-  { tech: "React", image: "../images/react.png" },
-  { tech: "NextJS", image: "../images/nextjs.png" },
-  { tech: "GatsbyJS", image: "../images/gatsbyjs.png" },
-  { tech: "Redux", image: "../images/redux.png" },
-  { tech: "Material UI", image: "../images/mui.png" },
-  { tech: "GraphQL", image: "../images/gql.png" },
   { tech: "rust", image: "../images/rust.png" },
-  { tech: "bash", image: "../images/bash.png" },
-  { tech: "AWS", image: "../images/aws.png" },
+  { tech: "GraphQL", image: "../images/gql.png" },
+  { tech: "NextJS", image: "../images/nextjs.png" },
+  { tech: "React", image: "../images/react.png" },
+  { tech: "GatsbyJS", image: "../images/gatsbyjs.png" },
+  { tech: "Material UI", image: "../images/mui.png" },
 ];
